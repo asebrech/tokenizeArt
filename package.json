@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npx hardhat run deployment/deploy.js --network sepolia",
+    "mint": "node mint/mint-nft.js",
     "compile": "npx hardhat compile"
   },
   "repository": {

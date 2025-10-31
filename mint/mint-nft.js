@@ -17,7 +17,12 @@ const signer = new ethers.Wallet(privateKey, provider);
 
 // Get contract ABI and address
 const abi = contract.abi;
-const contractAddress = "0xc27a945a1aC478EEceA0e5EC739d93Daa2c9DD37";
+const contractAddress = process.env.CONTRACT_ADDRESS;
+
+if (!contractAddress) {
+  console.error("Please set CONTRACT_ADDRESS in your .env file");
+  process.exit(1);
+}
 
 // Create a contract instance
 const myNftContract = new ethers.Contract(contractAddress, abi, signer);
