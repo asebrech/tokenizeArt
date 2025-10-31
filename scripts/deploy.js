@@ -7,9 +7,9 @@ async function main() {
   // Start deployment, returning a promise that resolves to a contract object
   const myNFT = await MyNFT.deploy(deployer.address); // Pass the deployer's address as the initial owner
 
-  await myNFT.deployed();
+  await myNFT.waitForDeployment();
 
-  console.log("Contract deployed to address:", myNFT.address);
+  console.log("Contract deployed to address:", await myNFT.getAddress());
 }
 
 main()

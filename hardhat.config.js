@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("@nomiclabs/hardhat-ethers"); // Ensure this is the correct package
+require("@nomicfoundation/hardhat-toolbox");
 const { API_URL, PRIVATE_KEY } = process.env;
 
 module.exports = {

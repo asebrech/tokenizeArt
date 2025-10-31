@@ -1,11 +1,11 @@
 require("dotenv").config();
-const ethers = require("ethers");
+const { ethers } = require("ethers");
 
 // Get Alchemy API Key
 const API_KEY = process.env.API_KEY;
 
 // Define an Alchemy Provider
-const provider = new ethers.providers.AlchemyProvider("sepolia", API_KEY);
+const provider = new ethers.AlchemyProvider("sepolia", API_KEY);
 
 const contract = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
@@ -17,7 +17,7 @@ const signer = new ethers.Wallet(privateKey, provider);
 
 // Get contract ABI and address
 const abi = contract.abi;
-const contractAddress = "0x4c16CCD68e2A53F4d1e7Acb9689d33d824d53965";
+const contractAddress = "0xc27a945a1aC478EEceA0e5EC739d93Daa2c9DD37";
 
 // Create a contract instance
 const myNftContract = new ethers.Contract(contractAddress, abi, signer);
@@ -31,7 +31,7 @@ const mintNFT = async () => {
   let nftTxn = await myNftContract.mintNFT(signer.address, tokenUri);
   await nftTxn.wait();
   console.log(
-    `NFT Minted! Check it out at: https://sepolia.etherscan.io/tx/${nftTxn.hash}`,
+    `NFT Minted! Check it out at: https://sepolia.etherscan.io/tx/${nftTxn.hash}`
   );
 };
 
