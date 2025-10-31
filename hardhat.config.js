@@ -26,6 +26,9 @@ module.exports = {
     ],
   },
   defaultNetwork: "sepolia",
+  paths: {
+    sources: "./code",
+  },
   networks: {
     hardhat: {},
     sepolia: {
