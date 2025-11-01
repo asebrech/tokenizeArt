@@ -10,21 +10,21 @@ export default function Home() {
       {/* Space Particles Background - Cyan stars */}
       <Particles
         className="absolute inset-0 opacity-60"
-        quantity={150}
+        quantity={180}
         ease={70}
         staticity={40}
         color="#3dd9eb"
-        size={0.6}
+        size={1.0}
       />
       
       {/* Additional particle layer for depth */}
       <Particles
         className="absolute inset-0 opacity-30"
-        quantity={80}
+        quantity={100}
         ease={90}
         staticity={60}
         color="#00d4ff"
-        size={1.2}
+        size={1.6}
       />
       
       {/* Gradient overlay for atmosphere */}
