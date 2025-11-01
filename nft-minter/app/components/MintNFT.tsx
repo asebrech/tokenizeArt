@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { parseAbi } from 'viem'
 
@@ -11,6 +11,7 @@ const contractABI = parseAbi([
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { address, isConnected } = useAccount()
   const { writeContract, data: hash, error } = useWriteContract()
   
@@ -18,6 +19,10 @@ export function MintNFT() {
     useWaitForTransactionReceipt({ hash })
 
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleMint = async () => {
     if (!tokenURI || !address) return
@@ -35,6 +40,18 @@ export function MintNFT() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (!mounted) {
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/2 mb-6"></div>
+          <div className="h-10 bg-gray-200 rounded mb-4"></div>
+          <div className="h-12 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    )
   }
 
   if (!isConnected) {
