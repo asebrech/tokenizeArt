@@ -2,23 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
-import { parseAbi } from 'viem'
-
-const contractABI = parseAbi([
-  'function mintNFT(address recipient, string memory tokenURI) public returns (uint256)',
-])
+import { useNFTMetadata } from '../hooks/useNFTMetadata'
+import { NFTPreview } from './NFTPreview'
+import { LoadingSkeleton } from './LoadingSkeleton'
+import { ErrorMessage } from './ErrorMessage'
+import { TransactionStatus } from './TransactionStatus'
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../constants/contract'
 
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [mounted, setMounted] = useState(false)
+  
   const { address, isConnected } = useAccount()
   const { writeContract, data: hash, error } = useWriteContract()
+  const { metadata, isLoading: loadingMetadata, error: metadataError } = useNFTMetadata(tokenURI)
   
   const { isLoading: isConfirming, isSuccess: isConfirmed } = 
     useWaitForTransactionReceipt({ hash })
-
-  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`
 
   useEffect(() => {
     setMounted(true)
@@ -30,8 +31,8 @@ export function MintNFT() {
     setIsLoading(true)
     try {
       writeContract({
-        address: contractAddress,
-        abi: contractABI,
+        address: CONTRACT_ADDRESS,
+        abi: CONTRACT_ABI,
         functionName: 'mintNFT',
         args: [address, tokenURI],
       })
@@ -63,7 +64,7 @@ export function MintNFT() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Mint Your NFT</h2>
       
       <div className="mb-6">
@@ -82,6 +83,25 @@ export function MintNFT() {
         </p>
       </div>
 
+      {/* NFT Preview */}
+      {loadingMetadata && (
+        <div className="mb-6">
+          <LoadingSkeleton />
+        </div>
+      )}
+
+      {metadataError && (
+        <div className="mb-6">
+          <ErrorMessage message={metadataError} />
+        </div>
+      )}
+
+      {metadata && !loadingMetadata && (
+        <div className="mb-6">
+          <NFTPreview metadata={metadata} />
+        </div>
+      )}
+
       <button
         onClick={handleMint}
         disabled={!tokenURI || isLoading || isConfirming}
@@ -90,31 +110,11 @@ export function MintNFT() {
         {isConfirming ? 'Confirming...' : isLoading ? 'Minting...' : 'Mint NFT'}
       </button>
 
-      {hash && (
-        <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-          <p className="text-sm text-gray-700 mb-2">Transaction Hash:</p>
-          <a
-            href={`https://sepolia.etherscan.io/tx/${hash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline text-sm break-all"
-          >
-            {hash}
-          </a>
-        </div>
-      )}
-
-      {isConfirmed && (
-        <div className="mt-4 p-4 bg-green-50 rounded-lg">
-          <p className="text-green-700 font-semibold">✅ NFT Minted Successfully!</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 rounded-lg">
-          <p className="text-red-700 text-sm">Error: {error.message}</p>
-        </div>
-      )}
+      <TransactionStatus 
+        hash={hash}
+        isConfirmed={isConfirmed}
+        error={error}
+      />
     </div>
   )
 }
