@@ -1,5 +1,5 @@
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertTriangle } from "lucide-react"
 
 interface ErrorMessageProps {
   message: string
@@ -7,9 +7,14 @@ interface ErrorMessageProps {
 
 export function ErrorMessage({ message }: ErrorMessageProps) {
   return (
-    <Alert variant="destructive">
-      <AlertCircle className="h-4 w-4" />
-      <AlertDescription>{message}</AlertDescription>
+    <Alert variant="destructive" className="border-destructive/50 bg-destructive/10 backdrop-blur-sm">
+      <AlertTriangle className="h-5 w-5" />
+      <AlertTitle className="font-mono uppercase tracking-wide text-sm">
+        ⚠ Metadata Load Failed
+      </AlertTitle>
+      <AlertDescription className="font-mono text-xs mt-2 text-destructive-foreground/80">
+        {message}
+      </AlertDescription>
     </Alert>
   )
 }

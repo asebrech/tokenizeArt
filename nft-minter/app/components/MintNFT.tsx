@@ -52,14 +52,14 @@ export function MintNFT() {
 
   if (!mounted) {
     return (
-      <Card className="max-w-2xl mx-auto">
+      <Card className="max-w-2xl mx-auto border-primary/20 bg-card/60 backdrop-blur-xl">
         <CardHeader>
-          <Skeleton className="h-8 w-1/2 mb-2" />
-          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-8 w-1/2 mb-2 bg-primary/20" />
+          <Skeleton className="h-4 w-3/4 bg-primary/10" />
         </CardHeader>
         <CardContent className="space-y-4">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-10 w-full bg-primary/10" />
+          <Skeleton className="h-12 w-full bg-primary/10" />
         </CardContent>
       </Card>
     )
@@ -67,12 +67,12 @@ export function MintNFT() {
 
   if (!isConnected) {
     return (
-      <Card className="max-w-2xl mx-auto">
+      <Card className="max-w-2xl mx-auto border-primary/20 bg-card/60 backdrop-blur-xl glow-border">
         <CardContent className="pt-6">
-          <Alert>
-            <Wallet className="h-4 w-4" />
-            <AlertDescription>
-              Please connect your wallet to mint an NFT
+          <Alert className="bg-accent/10 border-accent/30">
+            <Wallet className="h-5 w-5 text-accent" />
+            <AlertDescription className="text-primary font-mono">
+              ⚠️ WALLET CONNECTION REQUIRED - Initialize neural link to proceed
             </AlertDescription>
           </Alert>
         </CardContent>
@@ -81,27 +81,34 @@ export function MintNFT() {
   }
 
   return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-3xl">Mint Your NFT</CardTitle>
-        <CardDescription>
-          Upload your metadata and mint your unique NFT on the blockchain
+    <Card className="max-w-2xl mx-auto border-primary/20 bg-card/60 backdrop-blur-xl glow-border">
+      <CardHeader className="border-b border-primary/20">
+        <CardTitle className="text-3xl font-bold tracking-wide">
+          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            NFT DEPLOYMENT TERMINAL
+          </span>
+        </CardTitle>
+        <CardDescription className="text-primary/60 font-mono text-xs">
+          [ INITIALIZE BLOCKCHAIN TRANSACTION SEQUENCE ]
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="tokenURI">Token URI</Label>
+      <CardContent className="space-y-6 pt-6">
+        <div className="space-y-3">
+          <Label htmlFor="tokenURI" className="text-primary font-mono uppercase tracking-wider text-xs">
+            → Metadata Coordinates
+          </Label>
           <Input
             id="tokenURI"
             type="text"
             value={tokenURI}
             onChange={(e) => setTokenURI(e.target.value)}
-            placeholder="https://ipfs.io/ipfs/... or ipfs://..."
-            className="font-mono text-sm"
+            placeholder="ipfs://... or https://gateway.pinata.cloud/ipfs/..."
+            className="font-mono text-sm bg-background/50 border-primary/30 focus:border-accent focus:ring-accent/50 transition-all"
           />
-          <p className="text-xs text-muted-foreground">
-            Enter the IPFS URL or metadata URL for your NFT
+          <p className="text-xs text-muted-foreground/60 font-mono flex items-center gap-2">
+            <span className="text-accent">▸</span>
+            Input IPFS hash or metadata URL to initialize deployment
           </p>
         </div>
 
@@ -115,21 +122,23 @@ export function MintNFT() {
         <Button
           onClick={handleMint}
           disabled={!tokenURI || isLoading || isConfirming}
-          className="w-full"
+          className="w-full bg-gradient-to-r from-primary via-accent to-primary hover:from-accent hover:via-primary hover:to-accent text-background font-bold uppercase tracking-wider animate-neon-glow border-0 transition-all duration-300"
           size="lg"
         >
           {isConfirming ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Confirming Transaction...
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              ⚡ Confirming Deployment...
             </>
           ) : isLoading ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Minting...
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              🚀 Initializing Mint...
             </>
           ) : (
-            'Mint NFT'
+            <>
+              🛡️ Deploy NFT to Blockchain
+            </>
           )}
         </Button>
 

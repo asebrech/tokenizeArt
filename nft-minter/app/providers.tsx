@@ -21,10 +21,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={darkTheme({
-            accentColor: '#7b3ff2',
-            accentColorForeground: 'white',
+            accentColor: '#3dd9eb', // Halo cyan
+            accentColorForeground: '#0a1628',
             borderRadius: 'large',
             fontStack: 'system',
+            overlayBlur: 'large',
           })}
           coolMode={mounted}
           modalSize="compact"
