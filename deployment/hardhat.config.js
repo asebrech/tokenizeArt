@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("@nomicfoundation/hardhat-toolbox");
+const path = require("path");
 const { API_URL, PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
@@ -27,7 +28,10 @@ module.exports = {
   },
   defaultNetwork: "sepolia",
   paths: {
-    sources: "./code",
+    sources: path.resolve(__dirname, "../code"),
+    artifacts: path.resolve(__dirname, "./artifacts"),
+    cache: path.resolve(__dirname, "./cache"),
+    root: path.resolve(__dirname, ".."),
   },
   networks: {
     hardhat: {},

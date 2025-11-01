@@ -1,49 +1,37 @@
 {
-  "name": "tokenizeart",
+  "name": "tokenizeart-monorepo",
   "version": "1.0.0",
-  "description": "NFT Minting Platform - Smart Contracts + Frontend",
+  "description": "NFT Minting Platform Monorepo - Smart Contracts + Frontend",
   "private": true,
   "workspaces": [
+    "deployment",
     "mint"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npx hardhat run deployment/deploy.js --network sepolia",
-    "compile": "npx hardhat compile",
     "dev": "npm run dev --workspace=mint",
     "build": "npm run build --workspace=mint",
     "start": "npm run start --workspace=mint",
     "lint": "npm run lint --workspace=mint",
+    "compile": "npm run compile --workspace=deployment",
+    "deploy": "npm run deploy --workspace=deployment",
     "dev:frontend": "npm run dev --workspace=mint",
     "build:frontend": "npm run build --workspace=mint",
-    "deploy:contract": "npx hardhat run deployment/deploy.js --network sepolia",
-    "compile:contract": "npx hardhat compile"
+    "start:frontend": "npm run start --workspace=mint",
+    "lint:frontend": "npm run lint --workspace=mint",
+    "compile:contracts": "npm run compile --workspace=deployment",
+    "deploy:contracts": "npm run deploy --workspace=deployment",
+    "clean:contracts": "npm run clean --workspace=deployment",
+    "install:all": "npm install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asebrech/tokenizeArt.git"
   },
-  "keywords": ["nft", "ethereum", "hardhat", "nextjs", "web3"],
+  "keywords": ["nft", "ethereum", "hardhat", "nextjs", "web3", "monorepo"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/asebrech/tokenizeArt/issues"
   },
-  "homepage": "https://github.com/asebrech/tokenizeArt#readme",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.0"
-  },
-  "dependencies": {
-    "@nomicfoundation/hardhat-ethers": "^3.0.0",
-    "@openzeppelin/contracts": "^5.4.0",
-    "dotenv": "^16.0.0",
-    "ethers": "^6.13.0"
-  },
-  "overrides": {
-    "glob": "^11.0.0",
-    "inflight": "npm:@zkochan/inflight@^1.0.0",
-    "lodash.isequal": "npm:fast-deep-equal@^3.1.3"
-  }
+  "homepage": "https://github.com/asebrech/tokenizeArt#readme"
 }

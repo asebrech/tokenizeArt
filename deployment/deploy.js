@@ -35,7 +35,9 @@ async function main() {
     } else {
       console.error("Error verifying contract:", error.message);
       console.log("\nYou can verify manually later using:");
-      console.log(`CONTRACT_ADDRESS=${contractAddress} npx hardhat verify --network sepolia ${contractAddress} ${deployer.address}`);
+      console.log(
+        `CONTRACT_ADDRESS=${contractAddress} npx hardhat verify --network sepolia ${contractAddress} ${deployer.address}`
+      );
     }
   }
 }

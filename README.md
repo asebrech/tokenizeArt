@@ -5,17 +5,25 @@ A monorepo containing smart contracts and a Next.js frontend for minting NFTs wi
 ## 🏗️ Project Structure
 
 ```
-tokenizeArt/
-├── code/              # Solidity smart contracts
-├── deployment/        # Deployment scripts
-├── artifacts/         # Compiled contract artifacts
-├── cache/            # Hardhat cache
-├── mint/             # Next.js frontend application
-│   ├── app/          # Next.js app directory
-│   ├── components/   # React components (shadcn/ui)
-│   └── lib/          # Utility functions
-├── hardhat.config.js # Hardhat configuration
-└── package.json      # Monorepo root with workspaces
+tokenizeArt/                    # Monorepo root
+├── code/                       # Solidity smart contracts (shared)
+│   └── MyNFT.sol              # ERC-721 NFT contract
+├── deployment/                 # Contracts workspace
+│   ├── .env                   # Environment variables for deployment
+│   ├── .gitignore             # Deployment-specific ignores
+│   ├── package.json           # Hardhat dependencies
+│   ├── hardhat.config.js      # Hardhat configuration
+│   ├── deploy.js              # Deployment script
+│   ├── artifacts/             # Compiled contract artifacts
+│   └── cache/                 # Hardhat cache
+├── mint/                       # Frontend workspace
+│   ├── .env.local             # Frontend environment variables
+│   ├── .gitignore             # Frontend-specific ignores
+│   ├── package.json           # Next.js dependencies
+│   ├── app/                   # Next.js app directory
+│   ├── components/            # React components (shadcn/ui)
+│   └── lib/                   # Utility functions
+└── package.json               # Root orchestrator
 ```
 
 ## 🚀 Quick Start
@@ -55,21 +63,37 @@ npm run lint
 ## 🔧 Monorepo Setup
 
 This project uses **npm workspaces** to manage the monorepo:
-- Root package manages Hardhat and smart contracts
-- `mint/` workspace contains the Next.js frontend
+- Root package orchestrates all workspaces
+- `deployment/` workspace contains Hardhat configuration and smart contract deployment
+- `mint/` workspace contains the Next.js frontend application
+- `code/` folder is shared between workspaces (smart contracts source)
+- Each workspace has its own dependencies, `.env`, and `.gitignore`
 - Shared dependencies are hoisted to the root `node_modules`
 
 ### Available Scripts
 
+#### Main Commands
 | Command | Description |
 |---------|-------------|
-| `npm run compile` | Compile smart contracts |
-| `npm run deploy` | Deploy contracts to Sepolia |
 | `npm run dev` | Run frontend dev server |
 | `npm run build` | Build frontend for production |
-| `npm run dev:frontend` | Alias for `npm run dev` |
-| `npm run build:frontend` | Alias for `npm run build` |
-| `npm run deploy:contract` | Alias for `npm run deploy` |
+| `npm run compile` | Compile smart contracts |
+| `npm run deploy` | Deploy contracts to Sepolia |
+
+#### Frontend Commands
+| Command | Description |
+|---------|-------------|
+| `npm run dev:frontend` | Run frontend dev server |
+| `npm run build:frontend` | Build frontend for production |
+| `npm run start:frontend` | Start frontend production server |
+| `npm run lint:frontend` | Lint frontend code |
+
+#### Contract Commands
+| Command | Description |
+|---------|-------------|
+| `npm run compile:contracts` | Compile smart contracts |
+| `npm run deploy:contracts` | Deploy contracts to Sepolia |
+| `npm run clean:contracts` | Clean Hardhat cache and artifacts |
 
 ## 🎨 Tech Stack
 
