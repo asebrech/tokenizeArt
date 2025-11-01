@@ -1,18 +1,29 @@
 {
   "name": "tokenizeart",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NFT Minting Platform - Smart Contracts + Frontend",
+  "private": true,
+  "workspaces": [
+    "mint"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npx hardhat run deployment/deploy.js --network sepolia",
-    "compile": "npx hardhat compile"
+    "compile": "npx hardhat compile",
+    "dev": "npm run dev --workspace=mint",
+    "build": "npm run build --workspace=mint",
+    "start": "npm run start --workspace=mint",
+    "lint": "npm run lint --workspace=mint",
+    "dev:frontend": "npm run dev --workspace=mint",
+    "build:frontend": "npm run build --workspace=mint",
+    "deploy:contract": "npx hardhat run deployment/deploy.js --network sepolia",
+    "compile:contract": "npx hardhat compile"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asebrech/tokenizeArt.git"
   },
-  "keywords": [],
+  "keywords": ["nft", "ethereum", "hardhat", "nextjs", "web3"],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
