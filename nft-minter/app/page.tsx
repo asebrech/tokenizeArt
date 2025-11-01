@@ -2,11 +2,22 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { MintNFT } from './components/MintNFT'
 import { Badge } from '@/components/ui/badge'
 import { Sparkles } from 'lucide-react'
+import { Particles } from '@/components/ui/shadcn-io/particles'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <div className="relative min-h-screen bg-gradient-to-br from-background via-background to-primary/5 overflow-hidden">
+      {/* Particles Background */}
+      <Particles
+        className="absolute inset-0"
+        quantity={100}
+        ease={80}
+        staticity={50}
+        color="#7b3ff2"
+        size={0.8}
+      />
+      
+      <nav className="relative z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-primary" />
@@ -16,7 +27,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12 space-y-4">
           <Badge variant="secondary" className="mb-4">
             Sepolia Testnet
