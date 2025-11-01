@@ -14,14 +14,7 @@
     "lint": "npm run lint --workspace=mint",
     "compile": "npm run compile --workspace=deployment",
     "deploy": "npm run deploy --workspace=deployment",
-    "dev:frontend": "npm run dev --workspace=mint",
-    "build:frontend": "npm run build --workspace=mint",
-    "start:frontend": "npm run start --workspace=mint",
-    "lint:frontend": "npm run lint --workspace=mint",
-    "compile:contracts": "npm run compile --workspace=deployment",
-    "deploy:contracts": "npm run deploy --workspace=deployment",
-    "clean:contracts": "npm run clean --workspace=deployment",
-    "install:all": "npm install"
+    "clean": "npm run clean --workspace=deployment"
   },
   "repository": {
     "type": "git",

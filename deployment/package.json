@@ -7,7 +7,6 @@
   "scripts": {
     "compile": "hardhat compile",
     "deploy": "hardhat run deploy.js --network sepolia",
-    "deploy:sepolia": "hardhat run deploy.js --network sepolia",
     "test": "hardhat test",
     "clean": "hardhat clean"
   },
