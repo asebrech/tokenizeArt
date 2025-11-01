@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { MintNFT } from './components/MintNFT'
+import { MintNFTWrapper } from './components/MintNFTWrapper'
 import { ClearSessionButton } from './components/ClearSessionButton'
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
           </p>
         </div>
 
-        <MintNFT />
+        <MintNFTWrapper />
 
         <div className="mt-16 text-center text-sm text-gray-500">
           <p>Contract Address: {process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}</p>

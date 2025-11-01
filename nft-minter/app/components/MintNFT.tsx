@@ -15,8 +15,10 @@ const contractABI = parseAbi([
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, status } = useAccount();
   const { writeContract, data: hash, error } = useWriteContract();
+  
+  console.log('MintNFT render - Connected:', isConnected, 'Address:', address, 'Status:', status);
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({ hash });
