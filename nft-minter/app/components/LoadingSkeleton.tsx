@@ -1,11 +1,20 @@
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+
 export function LoadingSkeleton() {
   return (
-    <div className="p-4 bg-gray-50 rounded-lg">
-      <div className="animate-pulse flex flex-col items-center">
-        <div className="w-full h-64 bg-gray-300 rounded-lg mb-4"></div>
-        <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
-        <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-      </div>
-    </div>
+    <Card>
+      <CardContent className="p-6">
+        <div className="flex flex-col space-y-4">
+          <Skeleton className="w-full h-64 rounded-lg" />
+          <Skeleton className="h-6 w-3/4" />
+          <Skeleton className="h-4 w-1/2" />
+          <div className="grid grid-cols-2 gap-2 mt-4">
+            <Skeleton className="h-16" />
+            <Skeleton className="h-16" />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   )
 }

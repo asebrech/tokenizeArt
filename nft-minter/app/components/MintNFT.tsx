@@ -2,12 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { Loader2, Wallet } from 'lucide-react'
 import { useNFTMetadata } from '../hooks/useNFTMetadata'
 import { NFTPreview } from './NFTPreview'
 import { LoadingSkeleton } from './LoadingSkeleton'
 import { ErrorMessage } from './ErrorMessage'
 import { TransactionStatus } from './TransactionStatus'
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../constants/contract'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState('')
@@ -45,76 +52,93 @@ export function MintNFT() {
 
   if (!mounted) {
     return (
-      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/2 mb-6"></div>
-          <div className="h-10 bg-gray-200 rounded mb-4"></div>
-          <div className="h-12 bg-gray-200 rounded"></div>
-        </div>
-      </div>
+      <Card className="max-w-2xl mx-auto">
+        <CardHeader>
+          <Skeleton className="h-8 w-1/2 mb-2" />
+          <Skeleton className="h-4 w-3/4" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-12 w-full" />
+        </CardContent>
+      </Card>
     )
   }
 
   if (!isConnected) {
     return (
-      <div className="text-center p-8 bg-gray-50 rounded-lg">
-        <p className="text-gray-600">Please connect your wallet to mint an NFT</p>
-      </div>
+      <Card className="max-w-2xl mx-auto">
+        <CardContent className="pt-6">
+          <Alert>
+            <Wallet className="h-4 w-4" />
+            <AlertDescription>
+              Please connect your wallet to mint an NFT
+            </AlertDescription>
+          </Alert>
+        </CardContent>
+      </Card>
     )
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Mint Your NFT</h2>
+    <Card className="max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-3xl">Mint Your NFT</CardTitle>
+        <CardDescription>
+          Upload your metadata and mint your unique NFT on the blockchain
+        </CardDescription>
+      </CardHeader>
       
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Token URI (IPFS URL or Metadata URL)
-        </label>
-        <input
-          type="text"
-          value={tokenURI}
-          onChange={(e) => setTokenURI(e.target.value)}
-          placeholder="https://ipfs.io/ipfs/..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      <CardContent className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="tokenURI">Token URI</Label>
+          <Input
+            id="tokenURI"
+            type="text"
+            value={tokenURI}
+            onChange={(e) => setTokenURI(e.target.value)}
+            placeholder="https://ipfs.io/ipfs/... or ipfs://..."
+            className="font-mono text-sm"
+          />
+          <p className="text-xs text-muted-foreground">
+            Enter the IPFS URL or metadata URL for your NFT
+          </p>
+        </div>
+
+        {/* NFT Preview */}
+        {loadingMetadata && <LoadingSkeleton />}
+
+        {metadataError && <ErrorMessage message={metadataError} />}
+
+        {metadata && !loadingMetadata && <NFTPreview metadata={metadata} />}
+
+        <Button
+          onClick={handleMint}
+          disabled={!tokenURI || isLoading || isConfirming}
+          className="w-full"
+          size="lg"
+        >
+          {isConfirming ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Confirming Transaction...
+            </>
+          ) : isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Minting...
+            </>
+          ) : (
+            'Mint NFT'
+          )}
+        </Button>
+
+        <TransactionStatus 
+          hash={hash}
+          isConfirmed={isConfirmed}
+          error={error}
         />
-        <p className="mt-2 text-xs text-gray-500">
-          Enter the IPFS URL or metadata URL for your NFT
-        </p>
-      </div>
-
-      {/* NFT Preview */}
-      {loadingMetadata && (
-        <div className="mb-6">
-          <LoadingSkeleton />
-        </div>
-      )}
-
-      {metadataError && (
-        <div className="mb-6">
-          <ErrorMessage message={metadataError} />
-        </div>
-      )}
-
-      {metadata && !loadingMetadata && (
-        <div className="mb-6">
-          <NFTPreview metadata={metadata} />
-        </div>
-      )}
-
-      <button
-        onClick={handleMint}
-        disabled={!tokenURI || isLoading || isConfirming}
-        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"
-      >
-        {isConfirming ? 'Confirming...' : isLoading ? 'Minting...' : 'Mint NFT'}
-      </button>
-
-      <TransactionStatus 
-        hash={hash}
-        isConfirmed={isConfirmed}
-        error={error}
-      />
-    </div>
+      </CardContent>
+    </Card>
   )
 }
