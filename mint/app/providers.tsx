@@ -32,6 +32,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             overlayBlur: 'large',
           })}
           modalSize="compact"
+          locale="en-US"
         >
           {children}
         </RainbowKitProvider>
