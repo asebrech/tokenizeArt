@@ -1,7 +1,7 @@
 {
-  "name": "contracts",
+  "name": "unsc-contracts",
   "version": "1.0.0",
-  "description": "Smart contracts for TokenizeArt NFT platform",
+  "description": "UNSC-42 NFT smart contracts for neural asset deployment",
   "private": true,
   "type": "commonjs",
   "scripts": {

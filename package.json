@@ -1,7 +1,7 @@
 {
-  "name": "tokenizeart-monorepo",
+  "name": "unsc-monorepo",
   "version": "1.0.0",
-  "description": "NFT Minting Platform Monorepo - Smart Contracts + Frontend",
+  "description": "UNSC-42 Neural Asset Deployment Platform - Smart Contracts + Frontend",
   "private": true,
   "workspaces": [
     "deployment",

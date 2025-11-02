@@ -6,19 +6,19 @@ async function main() {
   console.log("Deploying contract with account:", deployer.address);
 
   // Grab the contract factory
-  const MyNFT = await ethers.getContractFactory("MyNFT");
+  const UNSC42 = await ethers.getContractFactory("UNSC42");
 
   // Start deployment, returning a promise that resolves to a contract object
-  const myNFT = await MyNFT.deploy(deployer.address);
+  const unsc42 = await UNSC42.deploy(deployer.address);
 
-  await myNFT.waitForDeployment();
+  await unsc42.waitForDeployment();
 
-  const contractAddress = await myNFT.getAddress();
+  const contractAddress = await unsc42.getAddress();
   console.log("\nContract deployed to address:", contractAddress);
 
   // Wait for a few block confirmations before verifying
   console.log("\nWaiting for block confirmations...");
-  await myNFT.deploymentTransaction().wait(5);
+  await unsc42.deploymentTransaction().wait(5);
 
   // Verify the contract
   console.log("\nVerifying contract on Etherscan...");
