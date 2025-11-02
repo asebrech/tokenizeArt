@@ -23,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function MintNFT() {
@@ -81,8 +81,11 @@ export function MintNFT() {
         <CardContent className="pt-6">
           <Alert className="bg-accent/10 border-accent/30">
             <Wallet className="h-5 w-5 text-accent" />
-            <AlertDescription className="text-primary font-mono">
-              ⚠️ WALLET CONNECTION REQUIRED - Initialize neural link to proceed
+            <AlertTitle className="text-accent font-mono uppercase tracking-wide">
+              Wallet Connection Required
+            </AlertTitle>
+            <AlertDescription className="text-primary/80 font-mono text-xs mt-2">
+              Initialize neural link to proceed
             </AlertDescription>
           </Alert>
         </CardContent>

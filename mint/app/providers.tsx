@@ -16,6 +16,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
     setMounted(true)
   }, [])
 
+  if (!mounted) {
+    return null
+  }
+
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
@@ -27,7 +31,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
             fontStack: 'system',
             overlayBlur: 'large',
           })}
-          coolMode={mounted}
           modalSize="compact"
         >
           {children}
