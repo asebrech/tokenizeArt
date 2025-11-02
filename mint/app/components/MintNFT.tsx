@@ -12,7 +12,7 @@ import { NFTPreview } from "./NFTPreview";
 import { LoadingSkeleton } from "./LoadingSkeleton";
 import { ErrorMessage } from "./ErrorMessage";
 import { TransactionStatus } from "./TransactionStatus";
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../constants/contract";
+import { CONTRACT_ABI, DEFAULT_CONTRACT } from "../constants/contract";
 import {
   Card,
   CardContent,
@@ -28,6 +28,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState("");
+  const [contractAddress, setContractAddress] = useState<string>("");
   const [mounted, setMounted] = useState(false);
 
   const { address, isConnected } = useAccount();
@@ -43,14 +44,22 @@ export function MintNFT() {
 
   useEffect(() => {
     setMounted(true);
+    const savedAddress = localStorage.getItem('nft-contract-address');
+    setContractAddress(savedAddress || DEFAULT_CONTRACT);
   }, []);
 
+  useEffect(() => {
+    if (contractAddress && mounted) {
+      localStorage.setItem('nft-contract-address', contractAddress);
+    }
+  }, [contractAddress, mounted]);
+
   const handleMint = async () => {
-    if (!tokenURI || !address) return;
+    if (!tokenURI || !address || !contractAddress) return;
 
     try {
       writeContract({
-        address: CONTRACT_ADDRESS,
+        address: contractAddress as `0x${string}`,
         abi: CONTRACT_ABI,
         functionName: "mintNFT",
         args: [address, tokenURI],
@@ -109,6 +118,27 @@ export function MintNFT() {
       <CardContent className="space-y-6 pt-6">
         <div className="space-y-3">
           <Label
+            htmlFor="contractAddress"
+            className="text-primary font-mono uppercase tracking-wider text-xs"
+          >
+            → Target Contract Address
+          </Label>
+          <Input
+            id="contractAddress"
+            type="text"
+            value={contractAddress}
+            onChange={(e) => setContractAddress(e.target.value)}
+            placeholder="0x..."
+            className="font-mono text-sm bg-background/50 border-primary/30 focus:border-accent focus:ring-accent/50 transition-all"
+          />
+          <p className="text-xs text-muted-foreground/60 font-mono flex items-center gap-2">
+            <span className="text-accent">▸</span>
+            NFT contract address on Sepolia Network
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <Label
             htmlFor="tokenURI"
             className="text-primary font-mono uppercase tracking-wider text-xs"
           >
@@ -137,7 +167,7 @@ export function MintNFT() {
 
         <Button
           onClick={handleMint}
-          disabled={!tokenURI || isPending || isConfirming}
+          disabled={!tokenURI || !contractAddress || !contractAddress.startsWith('0x') || isPending || isConfirming}
           className="w-full bg-gradient-to-r from-primary via-accent to-primary hover:from-accent hover:via-primary hover:to-accent text-background font-bold uppercase tracking-wider animate-neon-glow border-0 transition-all duration-300 cursor-pointer active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
           size="lg"
         >

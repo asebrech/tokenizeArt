@@ -1,11 +1,11 @@
-import { parseAbi } from 'viem'
+import { parseAbi } from "viem";
 
-export const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`
+export const DEFAULT_CONTRACT = "0xfc5DdA410ba54A9c404Cf034ef260e0FB40ffb95";
 
 export const CONTRACT_ABI = parseAbi([
-  'function mintNFT(address recipient, string memory tokenURI) public returns (uint256)',
-])
+  "function mintNFT(address recipient, string memory tokenURI) public returns (uint256)",
+]);
 
-export const ETHERSCAN_BASE_URL = 'https://sepolia.etherscan.io'
+export const ETHERSCAN_BASE_URL = "https://sepolia.etherscan.io";
 
-export const IPFS_GATEWAY = 'https://ipfs.io/ipfs/'
+export const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
