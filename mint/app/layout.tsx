@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NFT Minter - Mint Your NFTs",
-  description: "Mint your NFTs on Sepolia testnet",
+  title: "UNSC TokenizeArt",
+  description: "UNSC-grade NFT deployment system. Secure blockchain operations on Sepolia Network.",
 };
 
 export default function RootLayout({
