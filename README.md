@@ -1,898 +1,214 @@
-# UNSC-42 TokenizeArt Project# UNSC-42 TokenizeArt Project# UNSC-42 TokenizeArt Project# TokenizeArt - NFT Minting Platform
+# TokenizeArt - NFT Minting Platform
 
+**A comprehensive NFT minting platform built on Ethereum blockchain**
 
-
-**A comprehensive NFT minting platform built on Ethereum blockchain****A comprehensive NFT minting platform built on Ethereum blockchain**
-
-
-
-> *Project by: asebrech (42 School)*  > _Project by: asebrech (42 School)_ **A comprehensive NFT minting platform built on Ethereum blockchain**A monorepo containing smart contracts and a Next.js frontend for minting NFTs with a Space/Halo themed UI.
-
-> *Contract: UNSC-42 (ERC-721 Standard)*  
-
-> *Network: Sepolia Testnet*  > _Contract: UNSC-42 (ERC-721 Standard)_
-
-> *Contract Address: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`*
-
+> _Project by: asebrech (42 School)_
+> 
+> _Contract: UNSC-42 (ERC-721 Standard)_
+> 
 > _Network: Sepolia Testnet_
+> 
+> _Contract Address: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`_
+
+A monorepo containing smart contracts and a Next.js frontend for minting NFTs with a Space/Halo themed UI.
 
 ---
-
-> _Contract Address: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`_
 
 ## 📋 Table of Contents
 
-> _Project by: asebrech (42 School)_ ## 🏗️ Project Structure
-
 - [Project Overview](#-project-overview)
-
-- [Platform Choice & Justification](#-platform-choice--justification)---
-
+- [Platform Choice & Justification](#-platform-choice--justification)
 - [Technology Stack](#-technology-stack)
-
-- [Repository Structure](#-repository-structure)> _Contract: UNSC-42 (ERC-721 Standard)_
-
+- [Repository Structure](#-repository-structure)
 - [Quick Start](#-quick-start)
-
-- [Security & Best Practices](#-security--best-practices)## 📋 Table of Contents
-
+- [Security & Best Practices](#-security--best-practices)
 - [NFT Metadata Standards](#-nft-metadata-standards)
-
-- [Additional Resources](#-additional-resources)> _Network: Sepolia Testnet_ ```
-
-
-
----- [Project Overview](#-project-overview)
-
-
-
-## 🎯 Project Overview- [Platform Choice & Justification](#-platform-choice--justification)> *Contract Address: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`*tokenizeArt/ # Monorepo root
-
-
-
-UNSC-42 is an ERC-721 compliant NFT (Non-Fungible Token) smart contract deployed on the Ethereum Sepolia testnet. This project demonstrates the complete lifecycle of NFT development, from smart contract creation to deployment and minting through a user-friendly web interface.- [Technology Stack](#-technology-stack)
-
-
-
-**Key Features:**- [Repository Structure](#-repository-structure)├── code/ # Solidity smart contracts (shared)
-
-- ✅ ERC-721 standard compliance
-
-- ✅ Owner-controlled minting- [Quick Start](#-quick-start)
-
-- ✅ IPFS metadata integration
-
-- ✅ Web3 wallet integration (MetaMask, WalletConnect, etc.)- [Security & Best Practices](#-security--best-practices)---│ └── MyNFT.sol # ERC-721 NFT contract
-
-- ✅ Real-time transaction tracking
-
-- ✅ Dynamic contract address switching- [NFT Metadata Standards](#-nft-metadata-standards)
-
-- ✅ Responsive UI with space-themed design
-
-- [Additional Resources](#-additional-resources)├── deployment/ # Contracts workspace
+- [Additional Resources](#-additional-resources)
 
 ---
 
----## 📋 Table of Contents│ ├── .env # Environment variables for deployment
+## 🎯 Project Overview
+
+UNSC-42 is an ERC-721 compliant NFT (Non-Fungible Token) smart contract deployed on the Ethereum Sepolia testnet. This project demonstrates the complete lifecycle of NFT development, from smart contract creation to deployment and minting through a user-friendly web interface.
+
+**Key Features:**
+
+- ✅ ERC-721 standard compliance
+- ✅ Owner-controlled minting
+- ✅ IPFS metadata integration
+- ✅ Web3 wallet integration (MetaMask, WalletConnect, etc.)
+- ✅ Real-time transaction tracking
+- ✅ Dynamic contract address switching
+- ✅ Responsive UI with space-themed design
+
+---
 
 ## 🔍 Platform Choice & Justification
 
-## 🎯 Project Overview│ ├── .gitignore # Deployment-specific ignores
-
 ### Why Ethereum?
-
-UNSC-42 is an ERC-721 compliant NFT (Non-Fungible Token) smart contract deployed on the Ethereum Sepolia testnet. This project demonstrates the complete lifecycle of NFT development, from smart contract creation to deployment and minting through a user-friendly web interface.- [Project Overview](#-project-overview)│ ├── package.json # Hardhat dependencies
 
 After evaluating multiple blockchain platforms (Ethereum, Binance Smart Chain, Polygon, Solana), **Ethereum** was selected for the following reasons:
 
-**Key Features:**- [Platform Choice & Justification](#-platform-choice--justification)│ ├── hardhat.config.js # Hardhat configuration
-
 #### 1. **Industry Standard & Maturity**
 
-- Ethereum is the pioneer and most widely adopted platform for NFTs- ✅ ERC-721 standard compliance
-
+- Ethereum is the pioneer and most widely adopted platform for NFTs
 - ERC-721 is the de facto standard for non-fungible tokens
+- Extensive documentation and community support
 
-- Extensive documentation and community support- ✅ Owner-controlled minting- [Technology Stack](#-technology-stack)│ ├── deploy.js # Deployment script
-
-
-
-#### 2. **Security & Decentralization**- ✅ IPFS metadata integration
+#### 2. **Security & Decentralization**
 
 - Proven security track record with billions in value secured
-
-- Highly decentralized network with thousands of validators- ✅ Web3 wallet integration (MetaMask, WalletConnect, etc.)- [Repository Structure](#-repository-structure)│ ├── artifacts/ # Compiled contract artifacts
-
+- Highly decentralized network with thousands of validators
 - Battle-tested consensus mechanism (Proof of Stake)
-
-- ✅ Real-time transaction tracking
 
 #### 3. **Developer Ecosystem**
 
-- **OpenZeppelin**: Industry-standard, audited smart contract libraries- ✅ Dynamic contract address switching- [Quick Start](#-quick-start)│ └── cache/ # Hardhat cache
-
+- **OpenZeppelin**: Industry-standard, audited smart contract libraries
 - **Hardhat**: Professional-grade development environment
-
-- **Wagmi & RainbowKit**: Modern Web3 integration frameworks- ✅ Responsive UI with space-themed design
-
+- **Wagmi & RainbowKit**: Modern Web3 integration frameworks
 - Rich tooling ecosystem (Etherscan, Alchemy, IPFS integrations)
-
-- [Security & Best Practices](#-security--best-practices)├── mint/ # Frontend workspace
 
 #### 4. **Testnet Availability**
 
-- Sepolia testnet provides a realistic testing environment---
-
+- Sepolia testnet provides a realistic testing environment
 - Free test ETH from faucets (no real money required)
+- Identical behavior to mainnet for learning purposes
 
-- Identical behavior to mainnet for learning purposes- [NFT Metadata Standards](#-nft-metadata-standards)│ ├── .env.local # Frontend environment variables
-
-
-
-#### 5. **Interoperability**## 🔍 Platform Choice & Justification
+#### 5. **Interoperability**
 
 - NFTs are widely supported across marketplaces (OpenSea, Rarible, LooksRare)
-
-- Standard wallet support (MetaMask, WalletConnect, Rainbow)- [Additional Resources](#-additional-resources)│ ├── .gitignore # Frontend-specific ignores
-
+- Standard wallet support (MetaMask, WalletConnect, Rainbow)
 - Easy integration with IPFS for decentralized metadata storage
-
-### Why Ethereum?
 
 ### Why ERC-721?
 
-│ ├── package.json # Next.js dependencies
-
 The **ERC-721 standard** was chosen over alternatives (ERC-1155, custom implementations) because:
 
-- Each token is unique with its own metadataAfter evaluating multiple blockchain platforms (Ethereum, Binance Smart Chain, Polygon, Solana), **Ethereum** was selected for the following reasons:
-
+- Each token is unique with its own metadata
 - Proven ownership transfer mechanisms
-
-- Built-in `ownerOf()` function for ownership verification---│ ├── app/ # Next.js app directory
-
+- Built-in `ownerOf()` function for ownership verification
 - Wide ecosystem support
 
-#### 1. **Industry Standard & Maturity**
-
 ---
-
-- Ethereum is the pioneer and most widely adopted platform for NFTs│ ├── components/ # React components (shadcn/ui)
 
 ## 🛠 Technology Stack
 
-- ERC-721 is the de facto standard for non-fungible tokens
-
 ### Smart Contract Layer
-
-- **Solidity**: `^0.8.20` - Smart contract programming language- Extensive documentation and community support## 🎯 Project Overview│ └── lib/ # Utility functions
-
-- **OpenZeppelin Contracts**: `5.4.0` - Audited contract libraries
-
-  - `ERC721URIStorage`: NFT implementation with URI storage#### 2. **Security & Decentralization**└── package.json # Root orchestrator
-
-  - `Ownable`: Access control for minting privileges
-
-- **Hardhat**: `2.22.0` - Development environment and testing framework- Proven security track record with billions in value secured
-
-
-
-### Frontend Application- Highly decentralized network with thousands of validatorsUNSC-42 is an ERC-721 compliant NFT (Non-Fungible Token) smart contract deployed on the Ethereum Sepolia testnet. This project demonstrates the complete lifecycle of NFT development, from smart contract creation to deployment and minting through a user-friendly web interface.```
-
-- **Next.js**: `16.0.1` - React framework with App Router
-
-- **React**: `19.2.0` - UI component library- Battle-tested consensus mechanism (Proof of Stake)
-
-- **TypeScript**: `5.7.3` - Type-safe JavaScript
-
-- **Wagmi**: `2.19.1` - React Hooks for Ethereum#### 3. **Developer Ecosystem**
-
-- **RainbowKit**: `2.2.9` - Wallet connection UI
-
-- **Viem**: `2.38.5` - TypeScript-first Ethereum client- **OpenZeppelin**: Industry-standard, audited smart contract libraries**Key Features:**## 🚀 Quick Start
-
-- **Tailwind CSS**: `4.0.1` - Utility-first CSS framework
-
-- **shadcn/ui**: Modern component library- **Hardhat**: Professional-grade development environment
-
-
-
-### Infrastructure- **Wagmi & RainbowKit**: Modern Web3 integration frameworks- ✅ ERC-721 standard compliance
-
-- **Alchemy**: RPC provider for blockchain interaction
-
-- **IPFS**: Decentralized storage for NFT metadata- Rich tooling ecosystem (Etherscan, Alchemy, IPFS integrations)
-
-- **Etherscan**: Contract verification and blockchain explorer
-
-- ✅ Owner-controlled minting### Install Dependencies
-
----
-
-#### 4. **Testnet Availability**
-
-## 📁 Repository Structure
-
-- Sepolia testnet provides a realistic testing environment- ✅ IPFS metadata integration```bash
-
-```
-
-tokenizeArt/- Free test ETH from faucets (no real money required)
-
-├── README.md                    # This file - Project overview
-
-├── package.json                 # Monorepo configuration- Identical behavior to mainnet for learning purposes- ✅ Web3 wallet integration (MetaMask, WalletConnect, etc.)npm install
-
-│
-
-├── code/                        # Smart contract source code#### 5. **Interoperability**- ✅ Real-time transaction tracking```
-
-│   └── UNSC42.sol              # Main NFT contract (ERC-721)
-
-│- NFTs are widely supported across marketplaces (OpenSea, Rarible, LooksRare)
-
-├── deployment/                  # Contract deployment workspace
-
-│   ├── package.json            # Hardhat dependencies- Standard wallet support (MetaMask, WalletConnect, Rainbow)- ✅ Dynamic contract address switching
-
-│   ├── hardhat.config.js       # Hardhat configuration
-
-│   ├── deploy.js               # Deployment script- Easy integration with IPFS for decentralized metadata storage
-
-│   ├── .env.example            # Environment variables template
-
-│   └── artifacts/              # Compiled contract artifacts- ✅ Responsive UI with space-themed design### Smart Contract Commands
-
-│
-
-├── mint/                        # Frontend minting application### Why ERC-721?
-
-│   ├── package.json            # Next.js dependencies
-
-│   ├── wagmi.config.ts         # Web3 configuration````bash
-
-│   ├── app/
-
-│   │   ├── components/         # React componentsThe **ERC-721 standard** was chosen over alternatives (ERC-1155, custom implementations) because:
-
-│   │   │   ├── MintNFT.tsx    # Main minting interface
-
-│   │   │   ├── NFTPreview.tsx # Metadata preview- Each token is unique with its own metadata---# Compile contracts
-
-│   │   │   └── ...
-
-│   │   ├── hooks/             # Custom React hooks- Proven ownership transfer mechanisms
-
-│   │   ├── utils/             # Utility functions
-
-│   │   ├── constants/         # Contract ABI and addresses- Built-in `ownerOf()` function for ownership verificationnpm run compile
-
-│   │   └── types/             # TypeScript type definitions
-
-│   └── components/ui/         # shadcn/ui components- Wide ecosystem support
-
-│
-
-└── documentation/              # Detailed documentation## 🔍 Platform Choice & Justification
-
-    ├── README.md               # Quick start guide
-
-    ├── DEPLOYMENT.md           # Deployment guide---
-
-    ├── MINTING.md              # Minting guide
-
-    ├── TECHNICAL.md            # Technical specifications# Deploy to Sepolia
-
-    ├── SECURITY.md             # Security considerations
-
-    └── DIAGRAMS.md             # Architecture diagrams## 🛠 Technology Stack
-
-```
-
-### Why Ethereum?npm run deploy
-
----
-
-### Smart Contract Layer
-
-## 🚀 Quick Start
 
 - **Solidity**: `^0.8.20` - Smart contract programming language
-
-### Prerequisites
-
 - **OpenZeppelin Contracts**: `5.4.0` - Audited contract libraries
+  - `ERC721URIStorage`: NFT implementation with URI storage
+  - `Ownable`: Access control for minting privileges
+- **Hardhat**: `2.22.0` - Development environment and testing framework
 
-- **Node.js**: v18.x or higher
-
-- **npm**: v9.x or higher  - `ERC721URIStorage`: NFT implementation with URI storageAfter evaluating multiple blockchain platforms (Ethereum, Binance Smart Chain, Polygon, Solana), **Ethereum** was selected for the following reasons:# Or use the explicit command
-
-- **MetaMask**: Browser extension or compatible Web3 wallet
-
-- **Sepolia ETH**: Free from [Sepolia Faucet](https://sepoliafaucet.com/)  - `Ownable`: Access control for minting privileges
-
-
-
-### Installation- **Hardhat**: `2.22.0` - Development environment and testing frameworknpm run deploy:contract
-
-
-
-```bash
-
-# Clone the repository
-
-git clone https://github.com/asebrech/tokenizeArt.git### Frontend Application#### 1. **Industry Standard & Maturity**```
-
-cd tokenizeArt
+### Frontend Application
 
 - **Next.js**: `16.0.1` - React framework with App Router
-
-# Install all dependencies (monorepo)
-
-npm install- **React**: `19.2.0` - UI component library- Ethereum is the pioneer and most widely adopted platform for NFTs
-
-
-
-# Navigate to deployment workspace for contract operations- **TypeScript**: `5.7.3` - Type-safe JavaScript
-
-cd deployment
-
-- **Wagmi**: `2.19.1` - React Hooks for Ethereum- ERC-721 is the de facto standard for non-fungible tokens### Frontend Commands
-
-# Navigate to mint workspace for frontend
-
-cd mint- **RainbowKit**: `2.2.9` - Wallet connection UI
-
-```
-
-- **Viem**: `2.38.5` - TypeScript-first Ethereum client- Extensive documentation and community support```bash
-
-### Quick Commands
-
-- **Tailwind CSS**: `4.0.1` - Utility-first CSS framework
-
-```bash
-
-# Compile smart contracts- **shadcn/ui**: Modern component library# Run development server
-
-npm run compile
-
-
-
-# Deploy to Sepolia testnet
-
-npm run deploy### Infrastructure#### 2. **Security & Decentralization**npm run dev
-
-
-
-# Start frontend development server- **Alchemy**: RPC provider for blockchain interaction
-
-npm run dev
-
-- **IPFS**: Decentralized storage for NFT metadata- Proven security track record with billions in value secured
-
-# Build frontend for production
-
-npm run build- **Etherscan**: Contract verification and blockchain explorer
-
-```
-
-- Highly decentralized network with thousands of validators# Build for production
-
-For detailed setup instructions, see [`documentation/DEPLOYMENT.md`](./documentation/DEPLOYMENT.md)
-
----
-
----
-
-- Battle-tested consensus mechanism (Proof of Stake)npm run build
-
-## 🔒 Security & Best Practices
-
-## 📁 Repository Structure
-
-### Smart Contract Security
-
-
-
-- ✅ **Ownable Pattern**: Only contract owner can mint NFTs
-
-- ✅ **OpenZeppelin Libraries**: Audited and battle-tested code````
-
-- ✅ **No Reentrancy**: Simple minting logic without external calls
-
-- ✅ **Input Validation**: Solidity's type system ensures valid addressestokenizeArt/#### 3. **Developer Ecosystem**# Start production server
-
-
-
-### Ownership Verification├── README.md # This file - Project overview
-
-
-
-The contract implements the standard `ownerOf(uint256 tokenId)` function:├── package.json # Monorepo configuration- **OpenZeppelin**: Industry-standard, audited smart contract librariesnpm run start
-
-
-
-```solidity│
-
-// Verify NFT ownership (inherited from ERC721)
-
-address owner = UNSC42.ownerOf(tokenId);├── code/ # Smart contract source code- **Hardhat**: Professional-grade development environment
-
-```
-
-│ └── UNSC42.sol # Main NFT contract (ERC-721)
-
-This function can be called by anyone to verify the current owner of any token ID.
-
-│- **Wagmi & RainbowKit**: Modern Web3 integration frameworks# Lint code
-
-### Frontend Security
-
-├── deployment/ # Contract deployment workspace
-
-- ✅ **Read-Only Operations**: Metadata fetching doesn't require signatures
-
-- ✅ **User Confirmation**: All transactions require explicit wallet approval│ ├── package.json # Hardhat dependencies- Rich tooling ecosystem (Etherscan, Alchemy, IPFS integrations)npm run lint
-
-- ✅ **Error Handling**: User-friendly messages for failed transactions
-
-- ✅ **Input Sanitization**: TypeScript type checking prevents invalid data│ ├── hardhat.config.js # Hardhat configuration
-
-
-
-### Testnet Usage│ ├── deploy.js # Deployment script```
-
-
-
-⚠️ **IMPORTANT**: This project uses **Sepolia testnet only**. Never use real money or mainnet private keys.│ ├── .env.example # Environment variables template
-
-
-
-- Sepolia ETH has no monetary value│ └── artifacts/ # Compiled contract artifacts#### 4. **Testnet Availability**
-
-- Free to obtain from faucets
-
-- Identical functionality to mainnet for learning│
-
-
-
----├── mint/ # Frontend minting application- Sepolia testnet provides a realistic testing environment## 🔧 Monorepo Setup
-
-
-
-## 🎨 NFT Metadata Standards│ ├── package.json # Next.js dependencies
-
-
-
-### Required Metadata Format│ ├── wagmi.config.ts # Web3 configuration- Free test ETH from faucets (no real money required)
-
-
-
-All NFTs must follow the ERC-721 metadata standard:│ ├── app/
-
-
-
-```json│ │ ├── components/ # React components- Identical behavior to mainnet for learning purposesThis project uses **npm workspaces** to manage the monorepo:
-
-{
-
-  "name": "UNSC-42 #1 - Title",│ │ │ ├── MintNFT.tsx # Main minting interface
-
-  "description": "Description of the artwork",
-
-  "image": "ipfs://QmHash/image.png",│ │ │ ├── NFTPreview.tsx # Metadata preview- Root package orchestrates all workspaces
-
-  "attributes": [
-
-    {│ │ │ └── ...
-
-      "trait_type": "Artist",
-
-      "value": "asebrech"│ │ ├── hooks/ # Custom React hooks#### 5. **Interoperability**- `deployment/` workspace contains Hardhat configuration and smart contract deployment
-
-    },
-
-    {│ │ ├── utils/ # Utility functions
-
-      "trait_type": "Project",
-
-      "value": "42 School"│ │ ├── constants/ # Contract ABI and addresses- NFTs are widely supported across marketplaces (OpenSea, Rarible, LooksRare)- `mint/` workspace contains the Next.js frontend application
-
-    }
-
-  ]│ │ └── types/ # TypeScript type definitions
-
-}
-
-```│ └── components/ui/ # shadcn/ui components- Standard wallet support (MetaMask, WalletConnect, Rainbow)- `code/` folder is shared between workspaces (smart contracts source)
-
-
-
-### Metadata Requirements│
-
-
-
-- **Artist Name**: Must be `asebrech` (login)└── documentation/ # Detailed documentation- Easy integration with IPFS for decentralized metadata storage- Each workspace has its own dependencies, `.env`, and `.gitignore`
-
-- **NFT Name**: Must include "42" and a descriptive title
-
-- **Storage**: IPFS for decentralized, immutable storage    ├── DEPLOYMENT.md           # Deployment guide
-
-- **Format**: JSON following OpenSea metadata standards
-
-    ├── MINTING.md              # Minting guide- Shared dependencies are hoisted to the root `node_modules`
-
-Example IPFS URI: `ipfs://QmYourHash/metadata.json`
-
-    ├── TECHNICAL.md            # Technical specifications
-
----
-
-    └── SECURITY.md             # Security considerations### Why ERC-721?
-
-## 📚 Additional Resources
-
-````
-
-### Documentation
-
-- [Quick Start](./documentation/README.md) - Get started in 5 minutes### Available Scripts
-
-- [Deployment Guide](./documentation/DEPLOYMENT.md) - Step-by-step deployment instructions
-
-- [Minting Guide](./documentation/MINTING.md) - How to mint NFTs using the frontend---
-
-- [Technical Specifications](./documentation/TECHNICAL.md) - Contract details and architecture
-
-- [Security Guide](./documentation/SECURITY.md) - Security considerations and best practicesThe **ERC-721 standard** was chosen over alternatives (ERC-1155, custom implementations) because:
-
-- [Architecture Diagrams](./documentation/DIAGRAMS.md) - Visual system architecture
-
-## 🚀 Quick Start
-
-### External Links
-
-- [View Contract on Etherscan](https://sepolia.etherscan.io/address/0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C)- Each token is unique with its own metadata#### Main Commands
-
-- [ERC-721 Standard](https://eips.ethereum.org/EIPS/eip-721)
-
-- [OpenZeppelin Documentation](https://docs.openzeppelin.com/contracts/)### Prerequisites
-
-- [Hardhat Documentation](https://hardhat.org/docs)
-
-- [IPFS Documentation](https://docs.ipfs.tech/)- Proven ownership transfer mechanisms| Command | Description |
-
-
-
-### Getting Help- **Node.js**: v18.x or higher
-
-- Review the `documentation/` folder for detailed guides
-
-- Check [Hardhat troubleshooting](https://hardhat.org/hardhat-runner/docs/troubleshooting)- **npm**: v9.x or higher- Built-in `ownerOf()` function for ownership verification|---------|-------------|
-
-- Explore [Wagmi documentation](https://wagmi.sh/) for frontend issues
-
-- **MetaMask**: Browser extension or compatible Web3 wallet
-
----
-
-- **Sepolia ETH**: Free from [Sepolia Faucet](https://sepoliafaucet.com/)- Wide ecosystem support| `npm run dev` | Run frontend dev server |
-
-## 📜 License
-
-
-
-MIT License - See individual dependencies for their licenses.
-
-### Installation| `npm run build` | Build frontend for production |
-
----
-
-
-
-## 🎓 Educational Purpose
-
-```bash---| `npm run compile` | Compile smart contracts |
-
-This project was created as part of the **42 School curriculum** to demonstrate:
-
-- Understanding of blockchain technology# Clone the repository
-
-- Smart contract development skills
-
-- Web3 frontend integrationgit clone https://github.com/asebrech/tokenizeArt.git| `npm run deploy` | Deploy contracts to Sepolia |
-
-- Security best practices
-
-- Professional documentation standardscd tokenizeArt
-
-
-
-**Note**: This is a testnet project for educational purposes. No real assets are involved.## 🛠 Technology Stack
-
-
-
----# Install all dependencies (monorepo)
-
-
-
-*Built with ❤️ by asebrech for the 42 TokenizeArt project*npm install#### Frontend Commands
-
-
-
-
-# Navigate to deployment workspace for contract operations### Smart Contract Layer| Command | Description |
-
-cd deployment
-
-- **Solidity**: `^0.8.20` - Smart contract programming language|---------|-------------|
-
-# Navigate to mint workspace for frontend
-
-cd mint- **OpenZeppelin Contracts**: `5.4.0` - Audited contract libraries| `npm run dev:frontend` | Run frontend dev server |
-
-````
-
-- `ERC721URIStorage`: NFT implementation with URI storage| `npm run build:frontend` | Build frontend for production |
-
-### Quick Commands
-
-- `Ownable`: Access control for minting privileges| `npm run start:frontend` | Start frontend production server |
-
-```bash
-
-# Compile smart contracts- **Hardhat**: `2.22.0` - Development environment and testing framework| `npm run lint:frontend` | Lint frontend code |
-
-npm run compile
-
-
-
-# Deploy to Sepolia testnet
-
-npm run deploy### Frontend Application#### Contract Commands
-
-
-
-# Start frontend development server- **Next.js**: `16.0.1` - React framework with App Router| Command | Description |
-
-npm run dev
-
-- **React**: `19.2.0` - UI component library|---------|-------------|
-
-# Build frontend for production
-
-npm run build- **TypeScript**: `5.7.3` - Type-safe JavaScript| `npm run compile:contracts` | Compile smart contracts |
-
-```
-
-- **Wagmi**: `2.19.1` - React Hooks for Ethereum| `npm run deploy:contracts` | Deploy contracts to Sepolia |
-
-For detailed setup instructions, see [`documentation/DEPLOYMENT.md`](./documentation/DEPLOYMENT.md)
-
-- **RainbowKit**: `2.2.9` - Wallet connection UI| `npm run clean:contracts` | Clean Hardhat cache and artifacts |
-
----
-
+- **React**: `19.2.0` - UI component library
+- **TypeScript**: `5.7.3` - Type-safe JavaScript
+- **Wagmi**: `2.19.1` - React Hooks for Ethereum
+- **RainbowKit**: `2.2.9` - Wallet connection UI
 - **Viem**: `2.38.5` - TypeScript-first Ethereum client
-
-## 🔒 Security & Best Practices
-
-- **Tailwind CSS**: `4.0.1` - Utility-first CSS framework## 🎨 Tech Stack
-
-### Smart Contract Security
-
+- **Tailwind CSS**: `4.0.1` - Utility-first CSS framework
 - **shadcn/ui**: Modern component library
 
-- ✅ **Ownable Pattern**: Only contract owner can mint NFTs
+### Infrastructure
 
-- ✅ **OpenZeppelin Libraries**: Audited and battle-tested code**Smart Contracts:**
+- **Alchemy**: RPC provider for blockchain interaction
+- **IPFS**: Decentralized storage for NFT metadata
+- **Etherscan**: Contract verification and blockchain explorer
 
-- ✅ **No Reentrancy**: Simple minting logic without external calls
+---
 
-- ✅ **Input Validation**: Solidity's type system ensures valid addresses### Infrastructure- Hardhat 2.22.0
-
-### Ownership Verification- **Alchemy**: RPC provider for blockchain interaction- OpenZeppelin Contracts 5.4.0
-
-The contract implements the standard `ownerOf(uint256 tokenId)` function:- **IPFS**: Decentralized storage for NFT metadata- Solidity 0.8.24
-
-```solidity- **Etherscan**: Contract verification and blockchain explorer- Ethers.js 6.13.0
-
-// Verify NFT ownership (inherited from ERC721)
-
-address owner = UNSC42.ownerOf(tokenId);
+## 🏗️ Project Structure
 
 ```
-
----**Frontend:**
-
-This function can be called by anyone to verify the current owner of any token ID.
-
-- Next.js 16.0.1
-
-### Frontend Security
-
-## 📁 Repository Structure- React 19.2.0
-
-- ✅ **Read-Only Operations**: Metadata fetching doesn't require signatures
-
-- ✅ **User Confirmation**: All transactions require explicit wallet approval- Wagmi 2.19.1
-
-- ✅ **Error Handling**: User-friendly messages for failed transactions
-
-- ✅ **Input Sanitization**: TypeScript type checking prevents invalid data```- RainbowKit 2.2.9
-
-### Testnet UsagetokenizeArt/- Tailwind CSS 4
-
-⚠️ **IMPORTANT**: This project uses **Sepolia testnet only**. Never use real money or mainnet private keys.├── README.md # This file - Project overview- shadcn/ui components
-
-- Sepolia ETH has no monetary value├── package.json # Monorepo configuration- TypeScript 5
-
-- Free to obtain from faucets
-
-- Identical functionality to mainnet for learning│
-
-├── code/ # Smart contract source code
-
----│ └── UNSC42.sol # Main NFT contract (ERC-721)
-
+tokenizeArt/                      # Monorepo root
+├── README.md                     # This file - Project overview
+├── package.json                  # Monorepo configuration
 │
+├── code/                         # Solidity smart contracts (shared)
+│   └── UNSC42.sol                # ERC-721 NFT contract
+│
+├── deployment/                   # Contracts workspace
+│   ├── package.json              # Hardhat dependencies
+│   ├── hardhat.config.js         # Hardhat configuration
+│   ├── deploy.js                 # Deployment script
+│   ├── .env.example              # Environment variables template
+│   └── artifacts/                # Compiled contract artifacts
+│
+├── mint/                         # Frontend minting application
+│   ├── package.json              # Next.js dependencies
+│   ├── wagmi.config.ts           # Web3 configuration
+│   ├── app/
+│   │   ├── components/           # React components
+│   │   │   ├── MintNFT.tsx      # Main minting interface
+│   │   │   ├── NFTPreview.tsx   # Metadata preview
+│   │   │   └── ...
+│   │   ├── hooks/                # Custom React hooks
+│   │   ├── utils/                # Utility functions
+│   │   ├── constants/            # Contract ABI and addresses
+│   │   └── types/                # TypeScript type definitions
+│   └── components/ui/            # shadcn/ui components
+│
+└── documentation/                # Detailed documentation
+    ├── README.md                 # Quick start guide
+    ├── DEPLOYMENT.md             # Deployment guide
+    ├── MINTING.md                # Minting guide
+    ├── TECHNICAL.md              # Technical specifications
+    ├── SECURITY.md               # Security considerations
+    └── DIAGRAMS.md               # Architecture diagrams
+```
 
-## 🎨 NFT Metadata Standards├── deployment/ # Contract deployment workspace
-
-│ ├── package.json # Hardhat dependencies
-
-### Required Metadata Format│ ├── hardhat.config.js # Hardhat configuration
-
-│ ├── deploy.js # Deployment script
-
-All NFTs must follow the ERC-721 metadata standard:│ ├── .env.example # Environment variables template
-
-│ └── artifacts/ # Compiled contract artifacts
-
-````json│
-
-{├── mint/                        # Frontend minting application
-
-  "name": "UNSC-42 #1 - Title",│   ├── package.json            # Next.js dependencies
-
-  "description": "Description of the artwork",│   ├── wagmi.config.ts         # Web3 configuration
-
-  "image": "ipfs://QmHash/image.png",│   ├── app/
-
-  "attributes": [│   │   ├── components/         # React components
-
-    {│   │   │   ├── MintNFT.tsx    # Main minting interface
-
-      "trait_type": "Artist",│   │   │   ├── NFTPreview.tsx # Metadata preview
-
-      "value": "asebrech"│   │   │   └── ...
-
-    },│   │   ├── hooks/             # Custom React hooks
-
-    {│   │   ├── utils/             # Utility functions
-
-      "trait_type": "Project",│   │   ├── constants/         # Contract ABI and addresses
-
-      "value": "42 School"│   │   └── types/             # TypeScript type definitions
-
-    }│   └── components/ui/         # shadcn/ui components
-
-  ]│
-
-}└── documentation/              # Detailed documentation
-
-```    ├── DEPLOYMENT.md           # Deployment guide
-
-    ├── MINTING.md              # Minting guide
-
-### Metadata Requirements    ├── TECHNICAL.md            # Technical specifications
-
-    └── SECURITY.md             # Security considerations
-
-- **Artist Name**: Must be `asebrech` (login)```
-
-- **NFT Name**: Must include "42" and a descriptive title
-
-- **Storage**: IPFS for decentralized, immutable storage---
-
-- **Format**: JSON following OpenSea metadata standards
+---
 
 ## 🚀 Quick Start
-
-Example IPFS URI: `ipfs://QmYourHash/metadata.json`
 
 ### Prerequisites
 
----
-
 - **Node.js**: v18.x or higher
-
-## 📚 Additional Resources- **npm**: v9.x or higher
-
+- **npm**: v9.x or higher
 - **MetaMask**: Browser extension or compatible Web3 wallet
+- **Sepolia ETH**: Free from [Sepolia Faucet](https://sepoliafaucet.com/)
 
-### Documentation- **Sepolia ETH**: Free from [Sepolia Faucet](https://sepoliafaucet.com/)
+### Installation
 
-- [Deployment Guide](./documentation/DEPLOYMENT.md) - Step-by-step deployment instructions
-
-- [Minting Guide](./documentation/MINTING.md) - How to mint NFTs using the frontend### Installation
-
-- [Technical Specifications](./documentation/TECHNICAL.md) - Contract details and architecture
-
-- [Security Guide](./documentation/SECURITY.md) - Security considerations and best practices```bash
-
+```bash
 # Clone the repository
+git clone https://github.com/asebrech/tokenizeArt.git
+cd tokenizeArt
 
-### External Linksgit clone https://github.com/asebrech/tokenizeArt.git
-
-- [View Contract on Etherscan](https://sepolia.etherscan.io/address/0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C)cd tokenizeArt
-
-- [ERC-721 Standard](https://eips.ethereum.org/EIPS/eip-721)
-
-- [OpenZeppelin Documentation](https://docs.openzeppelin.com/contracts/)# Install all dependencies (monorepo)
-
-- [Hardhat Documentation](https://hardhat.org/docs)npm install
-
-- [IPFS Documentation](https://docs.ipfs.tech/)
+# Install all dependencies (monorepo)
+npm install
 
 # Navigate to deployment workspace for contract operations
+cd deployment
 
-### Getting Helpcd deployment
-
-- Review the `documentation/` folder for detailed guides
-
-- Check [Hardhat troubleshooting](https://hardhat.org/hardhat-runner/docs/troubleshooting)# Navigate to mint workspace for frontend
-
-- Explore [Wagmi documentation](https://wagmi.sh/) for frontend issuescd mint
-
-````
-
----
+# Navigate to mint workspace for frontend
+cd mint
+```
 
 ### Quick Commands
 
-## 📜 License
-
-````bash
-
-MIT License - See individual dependencies for their licenses.# Compile smart contracts
-
+```bash
+# Compile smart contracts
 npm run compile
+
+# Deploy to Sepolia testnet
+npm run deploy
+
+# Start frontend development server
+npm run dev
+
+# Build frontend for production
+npm run build
+```
+
+For detailed setup instructions, see [`documentation/DEPLOYMENT.md`](./documentation/DEPLOYMENT.md)
 
 ---
 
-# Deploy to Sepolia testnet
-
-## 🎓 Educational Purposenpm run deploy
-
-
-
-This project was created as part of the **42 School curriculum** to demonstrate:# Start frontend development server
-
-- Understanding of blockchain technologynpm run dev
-
-- Smart contract development skills
-
-- Web3 frontend integration# Build frontend for production
-
-- Security best practicesnpm run build
-
-- Professional documentation standards```
-
-
-
-**Note**: This is a testnet project for educational purposes. No real assets are involved.For detailed setup instructions, see [`documentation/DEPLOYMENT.md`](./documentation/DEPLOYMENT.md)
-
-
-
-------
-
-
-
-*Built with ❤️ by asebrech for the 42 TokenizeArt project*## 🔒 Security & Best Practices
-
+## 🔒 Security & Best Practices
 
 ### Smart Contract Security
 
@@ -908,7 +224,7 @@ The contract implements the standard `ownerOf(uint256 tokenId)` function:
 ```solidity
 // Verify NFT ownership (inherited from ERC721)
 address owner = UNSC42.ownerOf(tokenId);
-````
+```
 
 This function can be called by anyone to verify the current owner of any token ID.
 
@@ -968,10 +284,12 @@ Example IPFS URI: `ipfs://QmYourHash/metadata.json`
 
 ### Documentation
 
+- [Quick Start](./documentation/README.md) - Get started in 5 minutes
 - [Deployment Guide](./documentation/DEPLOYMENT.md) - Step-by-step deployment instructions
 - [Minting Guide](./documentation/MINTING.md) - How to mint NFTs using the frontend
 - [Technical Specifications](./documentation/TECHNICAL.md) - Contract details and architecture
 - [Security Guide](./documentation/SECURITY.md) - Security considerations and best practices
+- [Architecture Diagrams](./documentation/DIAGRAMS.md) - Visual system architecture
 
 ### External Links
 
@@ -989,9 +307,9 @@ Example IPFS URI: `ipfs://QmYourHash/metadata.json`
 
 ---
 
-## 📜 License
+## 📄 License
 
-MIT License - See individual dependencies for their licenses.
+MIT License - See LICENSE file for details
 
 ---
 
@@ -1009,4 +327,4 @@ This project was created as part of the **42 School curriculum** to demonstrate:
 
 ---
 
-_Built with ❤️ by asebrech for the 42 TokenizeArt project_
+**Built with ❤️ by asebrech for 42 School**
