@@ -33,6 +33,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           })}
           modalSize="compact"
           locale="en-US"
+          coolMode
         >
           {children}
         </RainbowKitProvider>
