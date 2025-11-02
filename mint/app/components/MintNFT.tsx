@@ -1,54 +1,68 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
-import { Loader2, Wallet } from 'lucide-react'
-import { useNFTMetadata } from '../hooks/useNFTMetadata'
-import { NFTPreview } from './NFTPreview'
-import { LoadingSkeleton } from './LoadingSkeleton'
-import { ErrorMessage } from './ErrorMessage'
-import { TransactionStatus } from './TransactionStatus'
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../constants/contract'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Skeleton } from "@/components/ui/skeleton"
+import { useState, useEffect } from "react";
+import {
+  useAccount,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from "wagmi";
+import { Loader2, Wallet } from "lucide-react";
+import { useNFTMetadata } from "../hooks/useNFTMetadata";
+import { NFTPreview } from "./NFTPreview";
+import { LoadingSkeleton } from "./LoadingSkeleton";
+import { ErrorMessage } from "./ErrorMessage";
+import { TransactionStatus } from "./TransactionStatus";
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../constants/contract";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function MintNFT() {
-  const [tokenURI, setTokenURI] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  
-  const { address, isConnected } = useAccount()
-  const { writeContract, data: hash, error } = useWriteContract()
-  const { metadata, isLoading: loadingMetadata, error: metadataError } = useNFTMetadata(tokenURI)
-  
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = 
-    useWaitForTransactionReceipt({ hash })
+  const [tokenURI, setTokenURI] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  const { address, isConnected } = useAccount();
+  const { writeContract, data: hash, error } = useWriteContract();
+  const {
+    metadata,
+    isLoading: loadingMetadata,
+    error: metadataError,
+  } = useNFTMetadata(tokenURI);
+
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({ hash });
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   const handleMint = async () => {
-    if (!tokenURI || !address) return
-    
-    setIsLoading(true)
+    if (!tokenURI || !address) return;
+
+    setIsLoading(true);
     try {
       writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
-        functionName: 'mintNFT',
+        functionName: "mintNFT",
         args: [address, tokenURI],
-      })
+      });
     } catch (err) {
-      console.error('Error minting NFT:', err)
+      console.error("Error minting NFT:", err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   if (!mounted) {
     return (
@@ -62,7 +76,7 @@ export function MintNFT() {
           <Skeleton className="h-12 w-full bg-primary/10" />
         </CardContent>
       </Card>
-    )
+    );
   }
 
   if (!isConnected) {
@@ -77,7 +91,7 @@ export function MintNFT() {
           </Alert>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -92,10 +106,13 @@ export function MintNFT() {
           [ INITIALIZE BLOCKCHAIN TRANSACTION SEQUENCE ]
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent className="space-y-6 pt-6">
         <div className="space-y-3">
-          <Label htmlFor="tokenURI" className="text-primary font-mono uppercase tracking-wider text-xs">
+          <Label
+            htmlFor="tokenURI"
+            className="text-primary font-mono uppercase tracking-wider text-xs"
+          >
             → Metadata Coordinates
           </Label>
           <Input
@@ -122,32 +139,30 @@ export function MintNFT() {
         <Button
           onClick={handleMint}
           disabled={!tokenURI || isLoading || isConfirming}
-          className="w-full bg-gradient-to-r from-primary via-accent to-primary hover:from-accent hover:via-primary hover:to-accent text-background font-bold uppercase tracking-wider animate-neon-glow border-0 transition-all duration-300"
+          className="w-full bg-gradient-to-r from-primary via-accent to-primary hover:from-accent hover:via-primary hover:to-accent text-background font-bold uppercase tracking-wider animate-neon-glow border-0 transition-all duration-300 cursor-pointer active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
           size="lg"
         >
           {isConfirming ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              ⚡ Confirming Deployment...
+              Confirming Deployment...
             </>
           ) : isLoading ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              🚀 Initializing Mint...
+              Initializing Mint...
             </>
           ) : (
-            <>
-              🛡️ Deploy NFT to Blockchain
-            </>
+            <>Deploy NFT to Blockchain</>
           )}
         </Button>
 
-        <TransactionStatus 
+        <TransactionStatus
           hash={hash}
           isConfirmed={isConfirmed}
           error={error}
         />
       </CardContent>
     </Card>
-  )
+  );
 }

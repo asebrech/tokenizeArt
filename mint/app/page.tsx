@@ -50,7 +50,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Zap className="h-5 w-5 text-accent animate-pulse" />
             <Badge variant="secondary" className="text-xs uppercase tracking-widest border-primary/30 bg-primary/10 text-primary font-semibold">
-              ⚡ Sepolia Network Active
+              Sepolia Network Active
             </Badge>
             <Zap className="h-5 w-5 text-accent animate-pulse" />
           </div>
