@@ -20,6 +20,7 @@ Complete guide for minting UNSC-42 NFTs using both the web interface and direct 
 The UNSC-42 contract supports minting NFTs with custom metadata stored on IPFS. Only the contract owner can mint new tokens.
 
 **Minting Requirements**:
+
 - ✅ Must be the contract owner
 - ✅ Valid recipient Ethereum address
 - ✅ IPFS URI pointing to valid metadata
@@ -53,6 +54,7 @@ The application will start at `http://localhost:3000`
 5. Ensure you're connected to **Sepolia Test Network**
 
 **Wallet Status Indicator**:
+
 - 🔴 Not connected
 - 🟢 Connected - displays address (e.g., `0x1234...5678`)
 
@@ -74,7 +76,8 @@ In the **"Token URI"** field, enter your IPFS metadata URI:
 
 **Example**: `ipfs://QmVWYAenTfN9pUjJjgNjNbUdUw6fVDxp8qZqL5x6wkUzqK/1.json`
 
-**Important**: 
+**Important**:
+
 - Must start with `ipfs://`
 - Must point to valid JSON metadata
 - Metadata should follow ERC-721 standard (see [Preparing NFT Metadata](#preparing-nft-metadata))
@@ -82,6 +85,7 @@ In the **"Token URI"** field, enter your IPFS metadata URI:
 ### Step 5: Preview Metadata
 
 As you type the URI, the application will:
+
 1. Fetch metadata from IPFS
 2. Display a preview card showing:
    - NFT image
@@ -90,6 +94,7 @@ As you type the URI, the application will:
    - Attributes
 
 **Loading States**:
+
 - ⏳ "Fetching metadata..." - Loading
 - ✅ Preview card displayed - Valid metadata
 - ❌ Error message - Invalid URI or metadata
@@ -110,6 +115,7 @@ As you type the URI, the application will:
 The UI will show transaction progress:
 
 **1. Pending (⏳)**:
+
 ```
 Transaction Broadcast
 Waiting for network confirmation...
@@ -118,6 +124,7 @@ View on Etherscan →
 ```
 
 **2. Confirmed (✅)**:
+
 ```
 Transaction Confirmed
 Your NFT has been minted successfully!
@@ -125,6 +132,7 @@ View on Etherscan →
 ```
 
 **3. Error (❌)**:
+
 ```
 Transaction Failed
 [Error message explaining what went wrong]
@@ -133,6 +141,7 @@ Transaction Failed
 ### Step 8: View Your NFT
 
 After confirmation:
+
 1. Click **"View on Etherscan"** link
 2. Find your transaction in the Etherscan explorer
 3. Look for the "Tokens Transferred" section
@@ -177,24 +186,27 @@ NFT metadata must follow the ERC-721 metadata standard:
 
 ### Required Fields
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `name` | string | ✅ Yes | Must include "42" and descriptive title |
-| `description` | string | ✅ Yes | Description of the NFT |
-| `image` | string | ✅ Yes | IPFS URI to image file |
-| `attributes` | array | ✅ Yes | Must include artist name (asebrech) |
+| Field         | Type   | Required | Description                             |
+| ------------- | ------ | -------- | --------------------------------------- |
+| `name`        | string | ✅ Yes   | Must include "42" and descriptive title |
+| `description` | string | ✅ Yes   | Description of the NFT                  |
+| `image`       | string | ✅ Yes   | IPFS URI to image file                  |
+| `attributes`  | array  | ✅ Yes   | Must include artist name (asebrech)     |
 
 ### Project Requirements
 
 **Artist Name**:
+
 - Must include an attribute with `"trait_type": "Artist"`
 - Value must be `"asebrech"` (your login)
 
 **NFT Name**:
+
 - Must include "42" in the name
 - Example: "UNSC-42 #1 - Title"
 
 **Example Valid Names**:
+
 - ✅ "UNSC-42 #1 - Genesis Armor"
 - ✅ "42 Spartan Protocol"
 - ✅ "UNSC Combat Unit 42"
@@ -249,6 +261,7 @@ Replace `YOUR_CID` with your actual IPFS hash.
 ### Via Etherscan (Owner Only)
 
 1. Visit your contract on Etherscan:
+
    ```
    https://sepolia.etherscan.io/address/YOUR_CONTRACT_ADDRESS
    ```
@@ -260,6 +273,7 @@ Replace `YOUR_CID` with your actual IPFS hash.
 4. Find the **`mintNFT`** function
 
 5. Enter parameters:
+
    - **recipient**: `0xRecipientAddress` (can be your own address)
    - **tokenURI**: `ipfs://QmYourHash/metadata.json`
 
@@ -270,11 +284,13 @@ Replace `YOUR_CID` with your actual IPFS hash.
 8. Wait for confirmation
 
 **Advantages**:
+
 - Direct contract interaction
 - No frontend needed
 - Useful for debugging
 
 **Disadvantages**:
+
 - No metadata preview
 - Manual address entry
 - Less user-friendly
@@ -297,9 +313,9 @@ async function main() {
 
   console.log("Minting NFT...");
   const tx = await UNSC42.mintNFT(recipientAddress, tokenURI);
-  
+
   console.log("Transaction hash:", tx.hash);
-  
+
   const receipt = await tx.wait();
   console.log("Minted! Block:", receipt.blockNumber);
 }
@@ -308,6 +324,7 @@ main().catch(console.error);
 ```
 
 Run the script:
+
 ```bash
 npx hardhat run scripts/mint-nft.js --network sepolia
 ```
@@ -326,6 +343,7 @@ npx hardhat run scripts/mint-nft.js --network sepolia
 6. Result shows the owner's address
 
 **Example**:
+
 ```
 ownerOf(1) → 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
 ```
@@ -339,7 +357,7 @@ The app can display NFT ownership:
 const { data: owner } = useReadContract({
   address: contractAddress,
   abi: CONTRACT_ABI,
-  functionName: 'ownerOf',
+  functionName: "ownerOf",
   args: [tokenId],
 });
 
@@ -440,7 +458,8 @@ console.log("Owner:", owner);
 
 **Cause**: You're not the contract owner
 
-**Solution**: 
+**Solution**:
+
 - Connect with the deployer wallet
 - Or transfer ownership first (advanced)
 
@@ -451,6 +470,7 @@ console.log("Owner:", owner);
 **Cause**: Invalid or unreachable IPFS URI
 
 **Solution**:
+
 1. Verify IPFS URI format: `ipfs://QmHash/file.json`
 2. Test in browser: `https://ipfs.io/ipfs/QmHash/file.json`
 3. Check metadata is properly pinned
@@ -471,14 +491,17 @@ console.log("Owner:", owner);
 **Causes & Solutions**:
 
 1. **Wrong URI format**
+
    - ✅ Correct: `ipfs://QmHash/metadata.json`
    - ❌ Wrong: `https://ipfs.io/ipfs/...`
 
 2. **File not pinned**
+
    - Pin your files on Pinata or NFT.Storage
    - Unpinned files may become unavailable
 
 3. **Gateway timeout**
+
    - Try a different IPFS gateway
    - Public gateways can be slow
 
@@ -493,10 +516,12 @@ console.log("Owner:", owner);
 **Wait Time**: OpenSea can take 5-30 minutes to index new NFTs
 
 **Manual Refresh**:
+
 1. Go to `https://testnets.opensea.io/assets/sepolia/YOUR_CONTRACT/TOKEN_ID`
 2. Click the refresh metadata button
 
 **Requirements**:
+
 - Contract must be verified on Etherscan
 - Metadata must be accessible
 - Image must be accessible via IPFS
@@ -539,7 +564,7 @@ async function batchMint() {
   const tokenURIs = [
     "ipfs://QmHash1/1.json",
     "ipfs://QmHash2/2.json",
-    "ipfs://QmHash3/3.json"
+    "ipfs://QmHash3/3.json",
   ];
 
   for (let i = 0; i < tokenURIs.length; i++) {
@@ -574,4 +599,4 @@ After minting your NFTs:
 
 ---
 
-*Happy minting! 🎨*
+_Happy minting! 🎨_

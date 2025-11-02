@@ -7,6 +7,7 @@ Complete documentation for the UNSC-42 TokenizeArt NFT project.
 ## 📖 Available Guides
 
 ### �🚀 [Quick Start Guide](./README.md)
+
 **You are here!** Get your project running in 5 minutes with step-by-step instructions.
 
 **Best for**: First-time setup, quick overview, getting started immediately.
@@ -14,9 +15,11 @@ Complete documentation for the UNSC-42 TokenizeArt NFT project.
 ---
 
 ### 🔧 [Deployment Guide](./DEPLOYMENT.md)
+
 Comprehensive guide for deploying the UNSC-42 smart contract to Ethereum Sepolia testnet.
 
 **Contents**:
+
 - Prerequisites and account setup (Alchemy, MetaMask, Etherscan)
 - Environment configuration
 - Contract compilation
@@ -29,9 +32,11 @@ Comprehensive guide for deploying the UNSC-42 smart contract to Ethereum Sepolia
 ---
 
 ### 🎨 [Minting Guide](./MINTING.md)
+
 Complete guide for minting UNSC-42 NFTs using the web interface and direct contract interaction.
 
 **Contents**:
+
 - Web interface minting tutorial
 - NFT metadata preparation and IPFS upload
 - Direct contract interaction via Etherscan
@@ -44,9 +49,11 @@ Complete guide for minting UNSC-42 NFTs using the web interface and direct contr
 ---
 
 ### 🔬 [Technical Specifications](./TECHNICAL.md)
+
 Detailed technical documentation covering smart contract architecture and frontend implementation.
 
 **Contents**:
+
 - Smart contract architecture and code breakdown
 - All contract functions with examples
 - Frontend architecture and component hierarchy
@@ -60,9 +67,11 @@ Detailed technical documentation covering smart contract architecture and fronte
 ---
 
 ### 🔒 [Security Guide](./SECURITY.md)
+
 Comprehensive security documentation covering all aspects of the project.
 
 **Contents**:
+
 - Smart contract security model
 - Access control mechanisms
 - Ownership verification methods
@@ -76,9 +85,11 @@ Comprehensive security documentation covering all aspects of the project.
 ---
 
 ### 📊 [Architecture Diagrams](./DIAGRAMS.md)
+
 Visual representations of system architecture, data flow, and processes.
 
 **Contents**:
+
 - System architecture overview
 - Minting flow diagram
 - Smart contract architecture
@@ -125,6 +136,7 @@ npm install
 ```
 
 **Expected output**:
+
 ```
 added XXX packages in XXs
 ```
@@ -147,6 +159,7 @@ nano .env
 ```
 
 **Add your keys**:
+
 ```bash
 API_URL="https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY"
 PRIVATE_KEY="your_metamask_private_key_without_0x"
@@ -154,6 +167,7 @@ ETHERSCAN_API_KEY="YOUR_ETHERSCAN_KEY"
 ```
 
 **Get your keys**:
+
 - **Alchemy**: [alchemy.com](https://www.alchemy.com) → Create App → Copy API Key
 - **Private Key**: MetaMask → Account Details → Show Private Key
 - **Etherscan**: [etherscan.io/myapikey](https://etherscan.io/myapikey) → Create Key
@@ -169,6 +183,7 @@ npm run deploy
 ```
 
 **Expected output**:
+
 ```
 Deploying contract with account: 0xYourAddress...
 Contract deployed to address: 0xNewContractAddress...
@@ -192,6 +207,7 @@ npm run dev
 ```
 
 **Expected output**:
+
 ```
 ▲ Next.js 16.0.1
 - Local:        http://localhost:3000
@@ -203,6 +219,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000)
 
 You should see:
+
 - Space-themed landing page
 - "Connect Wallet" button in top right
 - Particle effects in background
@@ -236,8 +253,8 @@ Upload your NFT metadata to IPFS first. Quick option using Pinata:
      "description": "First UNSC NFT from 42 School",
      "image": "ipfs://QmYourImageHash/image.png",
      "attributes": [
-       {"trait_type": "Artist", "value": "asebrech"},
-       {"trait_type": "Project", "value": "42 School"}
+       { "trait_type": "Artist", "value": "asebrech" },
+       { "trait_type": "Project", "value": "42 School" }
      ]
    }
    ```
@@ -253,6 +270,7 @@ Upload your NFT metadata to IPFS first. Quick option using Pinata:
 6. Wait for confirmation (10-30 seconds)
 
 **Success!** You'll see:
+
 ```
 ✅ Transaction Confirmed
 Your NFT has been minted successfully!
@@ -271,6 +289,7 @@ Your NFT has been minted successfully!
 ### Verify Ownership
 
 On Etherscan:
+
 1. Go to "Contract" → "Read Contract"
 2. Find `ownerOf` function
 3. Enter your token ID
@@ -282,21 +301,27 @@ On Etherscan:
 ## Common Issues & Fixes
 
 ### ❌ "Insufficient funds"
+
 **Fix**: Get more Sepolia ETH from [faucet](https://sepoliafaucet.com/)
 
 ### ❌ "User rejected transaction"
+
 **Fix**: Click "Mint NFT" again and approve in MetaMask
 
 ### ❌ "Ownable: caller is not the owner"
+
 **Fix**: Connect with the wallet that deployed the contract
 
 ### ❌ Metadata not loading
-**Fix**: 
+
+**Fix**:
+
 - Verify IPFS URI format: `ipfs://QmHash/file.json`
 - Test URL: `https://ipfs.io/ipfs/QmHash/file.json`
 - Ensure file is pinned on IPFS
 
 ### ❌ Wrong network
+
 **Fix**: Switch to Sepolia in MetaMask dropdown
 
 ---
@@ -306,24 +331,29 @@ On Etherscan:
 Now that you have a working NFT project:
 
 ### 📚 Read Documentation
+
 - [DEPLOYMENT.md](./DEPLOYMENT.md) - Detailed deployment guide
 - [MINTING.md](./MINTING.md) - Complete minting documentation
 - [TECHNICAL.md](./TECHNICAL.md) - Technical specifications
 - [SECURITY.md](./SECURITY.md) - Security best practices
 
 ### 🎨 Customize Your Project
+
 - Update color theme in `mint/app/globals.css`
 - Modify contract name/symbol in `code/UNSC42.sol`
 - Add new features to frontend
 
 ### 🧪 Test Features
+
 - Mint multiple NFTs
 - Transfer NFTs between wallets
 - View on OpenSea Testnet
 - Test error scenarios
 
 ### 📝 For Evaluation
+
 Prepare to demonstrate:
+
 - Contract deployment process
 - Minting functionality
 - Ownership verification with `ownerOf()`
@@ -396,11 +426,13 @@ npm run deploy     # Deploy contract
 ## Important Links
 
 ### Project Resources
+
 - **Contract Address**: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C` (example)
 - **Network**: Sepolia Testnet
 - **Etherscan**: https://sepolia.etherscan.io/address/YOUR_ADDRESS
 
 ### External Services
+
 - **Alchemy** (RPC): https://www.alchemy.com
 - **Etherscan** (Explorer): https://sepolia.etherscan.io
 - **Sepolia Faucet**: https://sepoliafaucet.com
@@ -408,6 +440,7 @@ npm run deploy     # Deploy contract
 - **NFT.Storage** (IPFS): https://nft.storage
 
 ### Documentation
+
 - **Ethereum Docs**: https://ethereum.org/developers
 - **Solidity Docs**: https://docs.soliditylang.org
 - **OpenZeppelin**: https://docs.openzeppelin.com
@@ -471,6 +504,7 @@ Before your evaluation, ensure:
 You now have a fully functional NFT minting platform! 🎉
 
 **What you've built**:
+
 - ✅ ERC-721 compliant smart contract
 - ✅ Deployed and verified on Sepolia
 - ✅ Modern Web3 frontend with React/Next.js
@@ -479,6 +513,7 @@ You now have a fully functional NFT minting platform! 🎉
 - ✅ Complete documentation
 
 **You can now**:
+
 - Mint NFTs with custom metadata
 - Verify ownership on-chain
 - Transfer tokens between wallets
@@ -487,6 +522,6 @@ You now have a fully functional NFT minting platform! 🎉
 
 ---
 
-*Built with ❤️ for 42 School TokenizeArt Project*
+_Built with ❤️ for 42 School TokenizeArt Project_
 
 **Good luck with your evaluation! 🚀**

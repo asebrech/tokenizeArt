@@ -37,6 +37,7 @@ All security-critical functionality comes from **OpenZeppelin Contracts v5.4.0**
 - ✅ **Actively maintained** with security patches
 
 **Dependencies**:
+
 ```solidity
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -47,23 +48,28 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 The contract is **NOT vulnerable** to:
 
 #### ✅ Reentrancy Attacks
+
 - No external calls during state changes
 - Simple minting logic with no callbacks
 - No Ether handling
 
 #### ✅ Integer Overflow/Underflow
+
 - Solidity ^0.8.0 has built-in overflow protection
 - No unchecked arithmetic operations
 
 #### ✅ Access Control Issues
+
 - OpenZeppelin's `Ownable` pattern
 - Explicit `onlyOwner` modifier on mint function
 
 #### ✅ Front-Running
+
 - No price-sensitive operations
 - No Dutch auctions or time-based mechanics
 
 #### ✅ Denial of Service
+
 - No loops over unbounded arrays
 - No blocking operations
 
@@ -80,6 +86,7 @@ The contract owner has **exclusive rights** to:
 3. **Renounce Ownership**: Call `renounceOwnership()`
 
 **Code Implementation**:
+
 ```solidity
 function mintNFT(address recipient, string memory tokenURI)
     public
@@ -93,23 +100,26 @@ function mintNFT(address recipient, string memory tokenURI)
 ### Verifying Contract Owner
 
 **Via Etherscan**:
+
 1. Visit contract on Etherscan
 2. Go to "Read Contract" tab
 3. Call `owner()` function
 4. Compare with your wallet address
 
 **Via Code**:
+
 ```javascript
 const owner = await contract.owner();
 console.log("Contract owner:", owner);
 ```
 
 **Via Frontend**:
+
 ```typescript
 const { data: owner } = useReadContract({
   address: contractAddress,
   abi: CONTRACT_ABI,
-  functionName: 'owner',
+  functionName: "owner",
 });
 ```
 
@@ -118,16 +128,19 @@ const { data: owner } = useReadContract({
 **⚠️ WARNING**: Only transfer ownership to a trusted address!
 
 **Steps**:
+
 1. Connect with current owner wallet
 2. Call `transferOwnership(newOwner)`
 3. New owner must accept (if using `Ownable2Step`)
 
 **Example**:
+
 ```solidity
 contract.transferOwnership("0xNewOwnerAddress");
 ```
 
 **Consequences**:
+
 - Previous owner **loses all privileges**
 - New owner gains minting rights
 - **Cannot be undone** without new owner cooperation
@@ -137,11 +150,13 @@ contract.transferOwnership("0xNewOwnerAddress");
 **⚠️ CRITICAL WARNING**: This makes the contract **permanently ownerless**!
 
 **Consequences**:
+
 - **No one can mint new tokens** ever again
 - Contract becomes immutable
 - Cannot be reversed
 
 **When to use**:
+
 - Only for finalized collections
 - Never recommended for this project
 
@@ -175,6 +190,7 @@ function ownerOf(uint256 tokenId) public view returns (address)
 6. Result shows owner address
 
 **Example**:
+
 ```
 Input: tokenId = 1
 Output: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
@@ -199,13 +215,13 @@ console.log(`Token #1 owner: ${owner}`);
 #### Via Frontend (Wagmi)
 
 ```typescript
-import { useReadContract } from 'wagmi';
+import { useReadContract } from "wagmi";
 
 function OwnerDisplay({ tokenId }: { tokenId: number }) {
   const { data: owner } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
-    functionName: 'ownerOf',
+    functionName: "ownerOf",
     args: [BigInt(tokenId)],
   });
 
@@ -216,11 +232,13 @@ function OwnerDisplay({ tokenId }: { tokenId: number }) {
 ### Error Handling
 
 **If token doesn't exist**:
+
 ```
 Error: ERC721: invalid token ID
 ```
 
 This means:
+
 - Token ID hasn't been minted yet
 - Token ID was burned (not applicable in this contract)
 
@@ -231,6 +249,7 @@ This means:
 ### Wallet Connection Security
 
 **Safe Practices**:
+
 - ✅ Always verify you're on the correct website
 - ✅ Check the network (Sepolia testnet)
 - ✅ Review transaction details before signing
@@ -238,6 +257,7 @@ This means:
 - ✅ Use hardware wallets for mainnet
 
 **RainbowKit Protection**:
+
 - Secure wallet connection flow
 - Network verification
 - Transaction simulation (when available)
@@ -247,6 +267,7 @@ This means:
 #### Before Signing
 
 **Always verify**:
+
 1. **Contract address** matches your deployed contract
 2. **Function name** is `mintNFT`
 3. **Parameters** are correct (recipient, tokenURI)
@@ -254,6 +275,7 @@ This means:
 5. **Network** is Sepolia (not mainnet!)
 
 **MetaMask Display**:
+
 ```
 Contract: 0x3187...C65C
 Function: mintNFT
@@ -265,6 +287,7 @@ Gas: 0.002 ETH
 #### User Actions
 
 **The frontend requires explicit user approval for**:
+
 - Wallet connection
 - Network switching
 - Transaction signing
@@ -275,31 +298,35 @@ Gas: 0.002 ETH
 ### Error Messages
 
 The frontend sanitizes errors to prevent:
+
 - Information leakage
 - Confusing technical jargon
 - Security details exposure
 
 **Example**:
+
 ```typescript
 // Raw error (not shown to user)
-"execution reverted: ERC721: caller is not owner nor approved"
+"execution reverted: ERC721: caller is not owner nor approved";
 
 // User-friendly message (shown to user)
-"You don't have permission to perform this action"
+"You don't have permission to perform this action";
 ```
 
 ### Input Validation
 
 **Frontend validates**:
+
 - ✅ Ethereum addresses (checksum validation)
 - ✅ IPFS URI format (`ipfs://` prefix)
 - ✅ Contract address format
 - ✅ Network compatibility
 
 **TypeScript type safety**:
+
 ```typescript
 // Ensures address is valid format
-address: contractAddress as `0x${string}`
+address: contractAddress as `0x${string}`;
 ```
 
 ---
@@ -311,14 +338,17 @@ address: contractAddress as `0x${string}`
 **CRITICAL RULES**:
 
 1. **Never commit private keys to Git**
+
    - ✅ `.env` is in `.gitignore`
    - ✅ Use `.env.example` for templates
 
 2. **Use separate wallets for testnet**
+
    - Don't use your mainnet wallet
    - Testnet wallets can use simpler passwords
 
 3. **Never share your private key**
+
    - No one legitimate will ask for it
    - Not even "support" teams
 
@@ -345,6 +375,7 @@ PASSWORD="mypassword123"
 ```
 
 **Verification**:
+
 ```bash
 # Check .env is ignored
 git status
@@ -356,12 +387,13 @@ git status
 
 **Testnet vs Mainnet**:
 
-| Network | Use Case | Cost | Risk |
-|---------|----------|------|------|
-| Sepolia | ✅ This project | Free | None |
+| Network | Use Case            | Cost    | Risk |
+| ------- | ------------------- | ------- | ---- |
+| Sepolia | ✅ This project     | Free    | None |
 | Mainnet | ❌ Not for learning | Real $$ | High |
 
 **Always verify network**:
+
 ```javascript
 const network = await provider.getNetwork();
 console.log("Network:", network.name);
@@ -369,6 +401,7 @@ console.log("Network:", network.name);
 ```
 
 **In MetaMask**:
+
 - Top center shows network name
 - Must show "Sepolia test network"
 - If it shows "Ethereum Mainnet" → STOP!
@@ -380,18 +413,22 @@ console.log("Network:", network.name);
 ### For Smart Contracts
 
 1. **Use Audited Libraries**
+
    - ✅ OpenZeppelin for all standard functionality
    - Avoid custom implementations of standards
 
 2. **Keep It Simple**
+
    - Complex code = more attack surface
    - Minimize custom logic
 
 3. **Test Thoroughly**
+
    - Write unit tests for all functions
    - Test edge cases and failure modes
 
 4. **Verify on Etherscan**
+
    - Makes code transparent
    - Enables community review
    - Builds trust
@@ -403,15 +440,18 @@ console.log("Network:", network.name);
 ### For Deployment
 
 1. **Start with Testnet**
+
    - ✅ Always test on Sepolia first
    - Never deploy to mainnet without testing
 
 2. **Verify Environment**
+
    - Check `.env` variables
    - Verify network configuration
    - Confirm sufficient test ETH
 
 3. **Save Deployment Info**
+
    - Contract address
    - Transaction hash
    - Block number
@@ -425,16 +465,19 @@ console.log("Network:", network.name);
 ### For Users
 
 1. **Verify URLs**
+
    - Check you're on the correct website
    - Look for HTTPS padlock
    - Bookmark official site
 
 2. **Review Transactions**
+
    - Always check details before signing
    - Verify contract address
    - Check gas fees
 
 3. **Protect Seed Phrase**
+
    - Write it down offline
    - Store in secure location
    - Never share with anyone
@@ -502,12 +545,14 @@ console.log("Network:", network.name);
 ### If Private Key Compromised
 
 **For Testnet (this project)**:
+
 1. Create new wallet
 2. Deploy new contract
 3. Update documentation
 4. No financial loss (testnet only)
 
 **For Mainnet (future projects)**:
+
 1. Immediately transfer all assets to safe wallet
 2. Revoke all token approvals
 3. Notify affected parties
@@ -517,6 +562,7 @@ console.log("Network:", network.name);
 ### If Contract Has Issues
 
 **Cannot modify deployed contract**, but you can:
+
 1. Deploy new corrected version
 2. Transfer ownership (if needed)
 3. Update frontend to point to new contract
@@ -525,9 +571,11 @@ console.log("Network:", network.name);
 ### If Wrong Network Deployed
 
 **Testnet deployment**:
+
 - No issue, just redeploy correctly
 
 **Mainnet deployment (accidental)**:
+
 - Costs real money
 - Cannot recover gas fees
 - Deploy again on correct network
@@ -539,11 +587,13 @@ console.log("Network:", network.name);
 For production/mainnet deployments (not this project):
 
 1. **Professional Audit**
+
    - Hire security firm
    - Examples: OpenZeppelin, Trail of Bits, ConsenSys Diligence
    - Cost: $5,000-$50,000+
 
 2. **Bug Bounty Program**
+
    - Immunefi, HackerOne
    - Reward security researchers
    - Crowdsourced security review
@@ -593,10 +643,10 @@ The UNSC42 contract is designed with security as a priority:
 
 ---
 
-*Stay safe and happy minting! 🔒*
+_Stay safe and happy minting! 🔒_
 
 ---
 
-*For deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)*  
-*For minting guide, see [MINTING.md](./MINTING.md)*  
-*For technical details, see [TECHNICAL.md](./TECHNICAL.md)*
+_For deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)_  
+_For minting guide, see [MINTING.md](./MINTING.md)_  
+_For technical details, see [TECHNICAL.md](./TECHNICAL.md)_

@@ -20,6 +20,7 @@ Complete guide for deploying the UNSC-42 NFT smart contract to the Ethereum Sepo
 ### Required Accounts & Keys
 
 #### 1. Alchemy Account (RPC Provider)
+
 - Visit [https://www.alchemy.com](https://www.alchemy.com)
 - Sign up for a free account
 - Create a new app:
@@ -28,6 +29,7 @@ Complete guide for deploying the UNSC-42 NFT smart contract to the Ethereum Sepo
 - Copy your **API Key** from the app dashboard
 
 #### 2. MetaMask Wallet
+
 - Install [MetaMask](https://metamask.io/) browser extension
 - Create a new wallet or import existing
 - Switch network to **Sepolia Test Network**
@@ -36,7 +38,9 @@ Complete guide for deploying the UNSC-42 NFT smart contract to the Ethereum Sepo
   - Select "Sepolia"
 
 #### 3. Sepolia Test ETH
+
 Get free test ETH from faucets:
+
 - [Alchemy Sepolia Faucet](https://sepoliafaucet.com/)
 - [Infura Sepolia Faucet](https://www.infura.io/faucet/sepolia)
 - [Chainlink Faucet](https://faucets.chain.link/sepolia)
@@ -44,6 +48,7 @@ Get free test ETH from faucets:
 **Amount needed**: ~0.1 Sepolia ETH (sufficient for deployment + verification)
 
 #### 4. Etherscan API Key
+
 - Visit [https://etherscan.io](https://etherscan.io)
 - Create an account
 - Navigate to [API Keys](https://etherscan.io/myapikey)
@@ -52,6 +57,7 @@ Get free test ETH from faucets:
 ### Required Software
 
 - **Node.js**: v18.x or higher
+
   ```bash
   node --version  # Should output v18.0.0 or higher
   ```
@@ -117,6 +123,7 @@ ETHERSCAN_API_KEY="YOUR_ETHERSCAN_API_KEY"
 7. Paste into `.env` file
 
 **Security Checklist**:
+
 - ✅ `.env` is in `.gitignore`
 - ✅ Never share your private key
 - ✅ Use a separate wallet for testnet
@@ -140,9 +147,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract UNSC42 is ERC721URIStorage, Ownable {
     uint256 private _tokenIds;
 
-    constructor(address initialOwner) 
-        ERC721("UNSC-42", "UNSC") 
-        Ownable(initialOwner) 
+    constructor(address initialOwner)
+        ERC721("UNSC-42", "UNSC")
+        Ownable(initialOwner)
     {}
 
     function mintNFT(address recipient, string memory tokenURI)
@@ -160,6 +167,7 @@ contract UNSC42 is ERC721URIStorage, Ownable {
 ```
 
 **Key Features**:
+
 - **ERC721URIStorage**: NFT standard with metadata URI storage
 - **Ownable**: Only contract owner can mint
 - **Auto-incrementing IDs**: Token IDs start at 1
@@ -172,11 +180,13 @@ npm run compile
 ```
 
 **Expected Output**:
+
 ```
 Compiled 1 Solidity file successfully (evm target: paris).
 ```
 
 **Artifacts Generated**:
+
 - `artifacts/code/UNSC42.sol/UNSC42.json` - Contract ABI and bytecode
 - `cache/solidity-files-cache.json` - Compilation cache
 
@@ -189,6 +199,7 @@ If you encounter errors, see [Troubleshooting](#troubleshooting) section.
 ### Step 1: Review Deployment Script
 
 The deployment script (`deployment/deploy.js`) performs:
+
 1. Deploys contract with deployer address as owner
 2. Waits for 5 block confirmations
 3. Automatically verifies contract on Etherscan
@@ -200,9 +211,9 @@ async function main() {
 
   const UNSC42 = await ethers.getContractFactory("UNSC42");
   const unsc42 = await UNSC42.deploy(deployer.address);
-  
+
   await unsc42.waitForDeployment();
-  
+
   const contractAddress = await unsc42.getAddress();
   console.log("Contract deployed to:", contractAddress);
 
@@ -225,6 +236,7 @@ npm run deploy
 ```
 
 **Expected Output**:
+
 ```
 Deploying contract with account: 0xYourAddress...
 
@@ -245,6 +257,7 @@ Contract verified successfully!
 **IMPORTANT**: Copy and save the contract address from the output!
 
 You'll need it for:
+
 - Frontend configuration
 - Interacting with the contract
 - Documentation
@@ -267,11 +280,13 @@ Contract verified successfully!
 ### View on Etherscan
 
 Visit your contract on Etherscan:
+
 ```
 https://sepolia.etherscan.io/address/YOUR_CONTRACT_ADDRESS
 ```
 
 **Verified Contract Features**:
+
 - ✅ Source code is visible
 - ✅ "Read Contract" tab available
 - ✅ "Write Contract" tab available
@@ -286,6 +301,7 @@ npx hardhat verify --network sepolia YOUR_CONTRACT_ADDRESS "YOUR_DEPLOYER_ADDRES
 ```
 
 Example:
+
 ```bash
 npx hardhat verify --network sepolia 0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C "0xYourDeployerAddress"
 ```
@@ -316,6 +332,7 @@ On Etherscan, test the contract:
 ### 3. Update Documentation
 
 Update the contract address in:
+
 - `README.md`
 - Frontend UI (if hardcoded)
 - Any documentation files
@@ -323,6 +340,7 @@ Update the contract address in:
 ### 4. Document Deployment Details
 
 Record for evaluation:
+
 ```
 Contract: UNSC42
 Address: 0xYourContractAddress
@@ -342,6 +360,7 @@ Etherscan: https://sepolia.etherscan.io/address/0xYourContractAddress
 **Cause**: Not enough Sepolia ETH in your wallet
 
 **Solution**:
+
 1. Visit a Sepolia faucet
 2. Request test ETH
 3. Wait for confirmation
@@ -352,6 +371,7 @@ Etherscan: https://sepolia.etherscan.io/address/0xYourContractAddress
 **Cause**: Transaction conflict or MetaMask nonce issue
 
 **Solution**:
+
 ```bash
 # Clear Hardhat cache
 rm -rf cache artifacts
@@ -364,6 +384,7 @@ npm run deploy
 ```
 
 Or reset MetaMask account:
+
 - MetaMask → Settings → Advanced → Clear activity tab data
 
 ### Error: "invalid API key"
@@ -371,6 +392,7 @@ Or reset MetaMask account:
 **Cause**: Incorrect or missing Etherscan API key
 
 **Solution**:
+
 1. Verify API key in `.env` file
 2. Ensure no extra spaces or quotes
 3. Generate a new API key if needed
@@ -381,6 +403,7 @@ Or reset MetaMask account:
 
 **Solution**:
 Check `hardhat.config.js` has Sepolia network configured:
+
 ```javascript
 networks: {
   sepolia: {
@@ -393,11 +416,13 @@ networks: {
 ### Verification Fails
 
 **Manual verification command**:
+
 ```bash
 npx hardhat verify --network sepolia CONTRACT_ADDRESS "DEPLOYER_ADDRESS"
 ```
 
 **If still failing**:
+
 - Wait a few minutes (Etherscan may be delayed)
 - Check your Etherscan API key is valid
 - Verify you're using the correct constructor arguments
@@ -407,6 +432,7 @@ npx hardhat verify --network sepolia CONTRACT_ADDRESS "DEPLOYER_ADDRESS"
 **Cause**: RPC issues or network congestion
 
 **Solution**:
+
 1. Check Alchemy API key is correct
 2. Try again after a few minutes
 3. Check Sepolia network status
@@ -459,4 +485,4 @@ After successful deployment:
 
 ---
 
-*Need help? Review the troubleshooting section or consult the Hardhat documentation.*
+_Need help? Review the troubleshooting section or consult the Hardhat documentation._

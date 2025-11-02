@@ -602,6 +602,7 @@ Shared Resources
 ---
 
 These diagrams provide visual references for understanding:
+
 - Overall system architecture
 - Component relationships
 - Data flow

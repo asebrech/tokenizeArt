@@ -22,7 +22,7 @@ Detailed technical documentation for the UNSC-42 NFT smart contract and supporti
 **Name**: UNSC42  
 **Standard**: ERC-721 (Non-Fungible Token)  
 **Solidity Version**: ^0.8.20  
-**License**: MIT  
+**License**: MIT
 
 ### Inheritance Hierarchy
 
@@ -58,9 +58,9 @@ contract UNSC42 is ERC721URIStorage, Ownable {
      * @dev Constructor sets token name, symbol, and initial owner
      * @param initialOwner Address that will own the contract
      */
-    constructor(address initialOwner) 
-        ERC721("UNSC-42", "UNSC") 
-        Ownable(initialOwner) 
+    constructor(address initialOwner)
+        ERC721("UNSC-42", "UNSC")
+        Ownable(initialOwner)
     {}
 
     /**
@@ -91,11 +91,13 @@ contract UNSC42 is ERC721URIStorage, Ownable {
 #### OpenZeppelin Contracts (v5.4.0)
 
 **ERC721URIStorage**:
+
 - Extends ERC721 with `_setTokenURI()` and `tokenURI()` functions
 - Stores metadata URI on-chain per token
 - Overrides `tokenURI()` to return stored URI
 
 **Ownable**:
+
 - Provides basic access control
 - `onlyOwner` modifier restricts function access
 - `transferOwnership()` for ownership transfer
@@ -103,24 +105,27 @@ contract UNSC42 is ERC721URIStorage, Ownable {
 
 ### State Variables
 
-| Variable | Type | Visibility | Description |
-|----------|------|------------|-------------|
-| `_tokenIds` | uint256 | private | Counter for sequential token IDs |
+| Variable    | Type    | Visibility | Description                      |
+| ----------- | ------- | ---------- | -------------------------------- |
+| `_tokenIds` | uint256 | private    | Counter for sequential token IDs |
 
 **Note**: Token IDs start at 1 (incremented before first mint)
 
 ### Inherited State
 
 From **ERC721**:
+
 - `_name` - Token collection name ("UNSC-42")
 - `_symbol` - Token symbol ("UNSC")
 - `_owners` - Mapping of token ID to owner address
 - `_balances` - Mapping of owner to token count
 
 From **ERC721URIStorage**:
+
 - `_tokenURIs` - Mapping of token ID to metadata URI
 
 From **Ownable**:
+
 - `_owner` - Address of contract owner
 
 ---
@@ -135,22 +140,26 @@ Mints a new NFT to the specified recipient with metadata URI.
 
 **Access**: Only owner  
 **Visibility**: Public  
-**State Modifying**: Yes  
+**State Modifying**: Yes
 
 **Parameters**:
+
 - `recipient` (address) - Address to receive the NFT
 - `tokenURI` (string) - IPFS URI to metadata (e.g., `ipfs://QmHash/metadata.json`)
 
 **Returns**:
+
 - `newItemId` (uint256) - The ID of the newly minted token
 
 **Events Emitted**:
+
 - `Transfer(address(0), recipient, newItemId)` - From ERC721
 - `MetadataUpdate(newItemId)` - From IERC4906
 
 **Gas Cost**: ~150,000-200,000 gas (depends on URI length)
 
 **Example**:
+
 ```solidity
 uint256 tokenId = mintNFT(
     0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb,
@@ -160,11 +169,13 @@ uint256 tokenId = mintNFT(
 ```
 
 **Requirements**:
+
 - Caller must be contract owner
 - Recipient cannot be zero address
 - tokenURI can be empty string (but not recommended)
 
 **Reverts If**:
+
 - Caller is not owner: `"Ownable: caller is not the owner"`
 - Recipient is zero address: `"ERC721: mint to the zero address"`
 
@@ -177,9 +188,10 @@ uint256 tokenId = mintNFT(
 Returns the owner of a specific token.
 
 **Access**: Public  
-**View**: Yes (no gas cost when called externally)  
+**View**: Yes (no gas cost when called externally)
 
 **Example**:
+
 ```solidity
 address owner = ownerOf(1);
 // Returns: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
@@ -194,6 +206,7 @@ address owner = ownerOf(1);
 Returns the number of tokens owned by an address.
 
 **Example**:
+
 ```solidity
 uint256 balance = balanceOf(0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb);
 // Returns: 3 (if owner has 3 NFTs)
@@ -206,6 +219,7 @@ uint256 balance = balanceOf(0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb);
 Returns the metadata URI for a token.
 
 **Example**:
+
 ```solidity
 string memory uri = tokenURI(1);
 // Returns: "ipfs://QmVWYAenTfN9pUjJjgNjNbUdUw6fVDxp8qZqL5x6wkUzqK/1.json"
@@ -218,11 +232,13 @@ string memory uri = tokenURI(1);
 Transfers a token from one address to another.
 
 **Requirements**:
+
 - Caller must be token owner or approved
 - `from` must be current owner
 - `to` cannot be zero address
 
 **Example**:
+
 ```solidity
 transferFrom(ownerAddress, recipientAddress, 1);
 ```
@@ -234,6 +250,7 @@ transferFrom(ownerAddress, recipientAddress, 1);
 Approves another address to transfer a specific token.
 
 **Example**:
+
 ```solidity
 approve(marketplaceAddress, 1);
 ```
@@ -245,6 +262,7 @@ approve(marketplaceAddress, 1);
 Approves or revokes an operator to manage all caller's tokens.
 
 **Example**:
+
 ```solidity
 setApprovalForAll(marketplaceAddress, true);
 ```
@@ -258,6 +276,7 @@ setApprovalForAll(marketplaceAddress, true);
 Returns the current owner of the contract.
 
 **Example**:
+
 ```solidity
 address currentOwner = owner();
 ```
@@ -268,9 +287,10 @@ address currentOwner = owner();
 
 Transfers contract ownership to a new address.
 
-**Access**: Only owner  
+**Access**: Only owner
 
 **Example**:
+
 ```solidity
 transferOwnership(0xNewOwnerAddress);
 ```
@@ -354,6 +374,7 @@ mint/
 **Purpose**: Main interface for minting NFTs
 
 **Features**:
+
 - Contract address input with localStorage persistence
 - Recipient address input
 - Token URI input
@@ -362,6 +383,7 @@ mint/
 - Error handling
 
 **State Management**:
+
 ```typescript
 const [tokenURI, setTokenURI] = useState("");
 const [contractAddress, setContractAddress] = useState("");
@@ -373,6 +395,7 @@ const { isLoading, isSuccess } = useWaitForTransactionReceipt({ hash });
 ```
 
 **Key Functions**:
+
 ```typescript
 const handleMint = async () => {
   writeContract({
@@ -391,6 +414,7 @@ const handleMint = async () => {
 **Purpose**: Displays metadata preview before minting
 
 **Props**:
+
 ```typescript
 interface NFTPreviewProps {
   metadata: NFTMetadata | null;
@@ -400,6 +424,7 @@ interface NFTPreviewProps {
 ```
 
 **Displays**:
+
 - NFT image (IPFS gateway)
 - Name and description
 - Attributes/traits
@@ -413,6 +438,7 @@ interface NFTPreviewProps {
 **Purpose**: Fetches and parses NFT metadata from IPFS
 
 **Implementation**:
+
 ```typescript
 export function useNFTMetadata(tokenURI: string) {
   const [metadata, setMetadata] = useState<NFTMetadata | null>(null);
@@ -425,10 +451,7 @@ export function useNFTMetadata(tokenURI: string) {
     const fetchMetadata = async () => {
       setIsLoading(true);
       try {
-        const httpUrl = tokenURI.replace(
-          "ipfs://",
-          "https://ipfs.io/ipfs/"
-        );
+        const httpUrl = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
         const response = await fetch(httpUrl);
         const data = await response.json();
         setMetadata(data);
@@ -453,6 +476,7 @@ export function useNFTMetadata(tokenURI: string) {
 **Purpose**: Converts raw transaction errors to user-friendly messages
 
 **Implementation**:
+
 ```typescript
 export function parseTransactionError(error: any): {
   title: string;
@@ -571,7 +595,7 @@ describe("UNSC42 Contract", function () {
 
   beforeEach(async function () {
     [owner, addr1] = await ethers.getSigners();
-    
+
     const UNSC42 = await ethers.getContractFactory("UNSC42");
     unsc42 = await UNSC42.deploy(owner.address);
     await unsc42.waitForDeployment();
@@ -585,7 +609,7 @@ describe("UNSC42 Contract", function () {
   it("Should mint NFT to recipient", async function () {
     const tokenURI = "ipfs://QmTest/1.json";
     await unsc42.mintNFT(addr1.address, tokenURI);
-    
+
     expect(await unsc42.ownerOf(1)).to.equal(addr1.address);
     expect(await unsc42.tokenURI(1)).to.equal(tokenURI);
   });
@@ -599,7 +623,7 @@ describe("UNSC42 Contract", function () {
   it("Should increment token IDs", async function () {
     await unsc42.mintNFT(addr1.address, "ipfs://1.json");
     await unsc42.mintNFT(addr1.address, "ipfs://2.json");
-    
+
     expect(await unsc42.ownerOf(1)).to.equal(addr1.address);
     expect(await unsc42.ownerOf(2)).to.equal(addr1.address);
     expect(await unsc42.balanceOf(addr1.address)).to.equal(2);
@@ -608,6 +632,7 @@ describe("UNSC42 Contract", function () {
 ```
 
 **Run tests**:
+
 ```bash
 cd deployment
 npx hardhat test
@@ -627,6 +652,7 @@ npx hardhat test
 **Gas per mint**: ~150,000-200,000 gas
 
 **Factors affecting gas**:
+
 - URI length (longer = more expensive)
 - Network congestion
 - Gas price at time of transaction
@@ -649,6 +675,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 ```
 
 Emitted when:
+
 - Token is minted (`from` = address(0))
 - Token is transferred
 - Token is burned (`to` = address(0))
@@ -668,6 +695,7 @@ Emitted when token metadata is updated.
 See [SECURITY.md](./SECURITY.md) for comprehensive security documentation.
 
 **Key Points**:
+
 - ✅ Only owner can mint (access control)
 - ✅ OpenZeppelin audited libraries
 - ✅ No reentrancy vulnerabilities
@@ -686,5 +714,5 @@ See [SECURITY.md](./SECURITY.md) for comprehensive security documentation.
 
 ---
 
-*For deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)*  
-*For minting guide, see [MINTING.md](./MINTING.md)*
+_For deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)_  
+_For minting guide, see [MINTING.md](./MINTING.md)_
