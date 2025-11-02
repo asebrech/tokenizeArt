@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CheckCircle2, ExternalLink, AlertCircle } from "lucide-react"
+import { CheckCircle2, ExternalLink, AlertCircle, XCircle } from "lucide-react"
 import { ETHERSCAN_BASE_URL } from '../constants/contract'
+import { parseTransactionError } from '../utils/parseError'
 
 interface TransactionStatusProps {
   hash?: `0x${string}`
@@ -9,6 +10,8 @@ interface TransactionStatusProps {
 }
 
 export function TransactionStatus({ hash, isConfirmed, error }: TransactionStatusProps) {
+  const errorInfo = error ? parseTransactionError(error) : null
+  
   return (
     <div className="space-y-4 mt-6">
       {hash && (
@@ -43,14 +46,27 @@ export function TransactionStatus({ hash, isConfirmed, error }: TransactionStatu
         </Alert>
       )}
 
-      {error && (
-        <Alert variant="destructive" className="border-destructive/50 bg-destructive/10 backdrop-blur-sm">
-          <AlertCircle className="h-5 w-5" />
-          <AlertTitle className="font-mono uppercase tracking-wide">
-            ⚠ System Error
+      {errorInfo && (
+        <Alert 
+          variant="destructive" 
+          className={`backdrop-blur-sm ${
+            errorInfo.isUserRejection 
+              ? 'border-yellow-500/50 bg-yellow-500/10' 
+              : 'border-destructive/50 bg-destructive/10'
+          }`}
+        >
+          {errorInfo.isUserRejection ? (
+            <XCircle className="h-5 w-5 text-yellow-500" />
+          ) : (
+            <AlertCircle className="h-5 w-5" />
+          )}
+          <AlertTitle className={`font-mono uppercase tracking-wide ${
+            errorInfo.isUserRejection ? 'text-yellow-500' : ''
+          }`}>
+            {errorInfo.title}
           </AlertTitle>
           <AlertDescription className="font-mono text-xs mt-2">
-            {error.message}
+            {errorInfo.message}
           </AlertDescription>
         </Alert>
       )}
