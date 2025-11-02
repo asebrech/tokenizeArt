@@ -28,11 +28,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function MintNFT() {
   const [tokenURI, setTokenURI] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const { address, isConnected } = useAccount();
-  const { writeContract, data: hash, error } = useWriteContract();
+  const { writeContract, data: hash, error, isPending } = useWriteContract();
   const {
     metadata,
     isLoading: loadingMetadata,
@@ -49,7 +48,6 @@ export function MintNFT() {
   const handleMint = async () => {
     if (!tokenURI || !address) return;
 
-    setIsLoading(true);
     try {
       writeContract({
         address: CONTRACT_ADDRESS,
@@ -59,8 +57,6 @@ export function MintNFT() {
       });
     } catch (err) {
       console.error("Error minting NFT:", err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -138,19 +134,19 @@ export function MintNFT() {
 
         <Button
           onClick={handleMint}
-          disabled={!tokenURI || isLoading || isConfirming}
+          disabled={!tokenURI || isPending || isConfirming}
           className="w-full bg-gradient-to-r from-primary via-accent to-primary hover:from-accent hover:via-primary hover:to-accent text-background font-bold uppercase tracking-wider animate-neon-glow border-0 transition-all duration-300 cursor-pointer active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
           size="lg"
         >
           {isConfirming ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Confirming Deployment...
+              Confirming on Blockchain...
             </>
-          ) : isLoading ? (
+          ) : isPending ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Initializing Mint...
+              Waiting for Wallet...
             </>
           ) : (
             <>Deploy NFT to Blockchain</>
