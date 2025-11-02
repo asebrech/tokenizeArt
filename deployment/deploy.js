@@ -14,8 +14,7 @@ async function main() {
   await myNFT.waitForDeployment();
 
   const contractAddress = await myNFT.getAddress();
-  console.log("Contract deployed to address:", contractAddress);
-  console.log("\nSave this address to your .env file as CONTRACT_ADDRESS");
+  console.log("\nContract deployed to address:", contractAddress);
 
   // Wait for a few block confirmations before verifying
   console.log("\nWaiting for block confirmations...");
@@ -30,15 +29,7 @@ async function main() {
     });
     console.log("Contract verified successfully!");
   } catch (error) {
-    if (error.message.includes("Already Verified")) {
-      console.log("Contract is already verified!");
-    } else {
-      console.error("Error verifying contract:", error.message);
-      console.log("\nYou can verify manually later using:");
-      console.log(
-        `CONTRACT_ADDRESS=${contractAddress} npx hardhat verify --network sepolia ${contractAddress} ${deployer.address}`
-      );
-    }
+    console.error("Error verifying contract:", error.message);
   }
 }
 
