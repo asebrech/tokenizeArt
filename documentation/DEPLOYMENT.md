@@ -438,33 +438,6 @@ npx hardhat verify --network sepolia CONTRACT_ADDRESS "DEPLOYER_ADDRESS"
 
 ---
 
-## Best Practices
-
-### Before Deployment
-
-- ✅ Review contract code thoroughly
-- ✅ Test on local Hardhat network first
-- ✅ Ensure sufficient testnet ETH
-- ✅ Double-check `.env` configuration
-- ✅ Verify `.env` is in `.gitignore`
-
-### During Deployment
-
-- ✅ Monitor transaction in MetaMask
-- ✅ Save deployment transaction hash
-- ✅ Wait for block confirmations
-- ✅ Verify automatic verification succeeds
-
-### After Deployment
-
-- ✅ Save contract address securely
-- ✅ Test contract functions on Etherscan
-- ✅ Update frontend configuration
-- ✅ Update documentation
-- ✅ Test minting functionality
-
----
-
 ## Next Steps
 
 After successful deployment:
@@ -481,7 +454,3 @@ After successful deployment:
 - [Etherscan Verification Guide](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify)
 - [Alchemy Tutorials](https://docs.alchemy.com/docs)
 - [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/)
-
----
-
-_Need help? Review the troubleshooting section or consult the Hardhat documentation._
