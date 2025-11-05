@@ -459,44 +459,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 ---
 
-## Contract Events
-
-### Transfer Event
-
-```solidity
-event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-```
-
-Emitted when:
-
-- Token is minted (`from` = address(0))
-- Token is transferred
-- Token is burned (`to` = address(0))
-
-### MetadataUpdate Event (IERC4906)
-
-```solidity
-event MetadataUpdate(uint256 tokenId);
-```
-
-Emitted when token metadata is updated.
-
----
-
-## Security Considerations
-
-See [SECURITY.md](./SECURITY.md) for comprehensive security documentation.
-
-**Key Points**:
-
-- ✅ Only owner can mint (access control)
-- ✅ OpenZeppelin audited libraries
-- ✅ No reentrancy vulnerabilities
-- ✅ Standard ERC-721 implementation
-- ✅ Testnet deployment (no financial risk)
-
----
-
 ## Additional Resources
 
 - [Solidity Documentation](https://docs.soliditylang.org/)
