@@ -413,6 +413,31 @@ const handleMint = async () => {
 
 ## Web3 Integration
 
+This project uses a modern Web3 stack for blockchain interaction:
+
+### Technology Overview
+
+**Wagmi** (v2.19.1)
+- React Hooks library for Ethereum
+- Provides hooks like `useAccount`, `useWriteContract`, `useWaitForTransactionReceipt`
+- Type-safe contract interactions with TypeScript
+- Manages wallet connections, network switching, and transaction states
+- Built on top of Viem for lower-level blockchain operations
+
+**RainbowKit** (v2.2.9)
+- Wallet connection UI component library
+- Provides beautiful, customizable wallet connection modal
+- Supports MetaMask, WalletConnect, Coinbase Wallet, and 50+ wallets
+- Handles wallet switching, account management, and network prompts
+- Theming support (using dark theme with custom accent colors in this project)
+
+**Viem** (v2.38.5)
+- TypeScript-first Ethereum library (alternative to ethers.js)
+- Provides low-level blockchain primitives
+- Type-safe contract ABIs with `parseAbi`
+- Better performance and smaller bundle size than ethers.js
+- Used by Wagmi under the hood
+
 ### Wagmi Configuration
 
 **File**: `mint/wagmi.config.ts`
