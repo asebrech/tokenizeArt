@@ -157,7 +157,7 @@ export function MintNFT() {
                 setInputMode(inputMode === "select" ? "manual" : "select");
                 setTokenURI("");
               }}
-              className="text-xs font-mono border-primary/30 hover:border-accent hover:text-accent transition-all"
+              className="text-xs font-mono border-primary/30 hover:border-accent hover:text-accent transition-all cursor-pointer"
             >
               {inputMode === "select" ? "Manual Input" : "Select Preset"}
             </Button>
