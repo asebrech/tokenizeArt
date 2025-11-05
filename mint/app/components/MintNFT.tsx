@@ -12,6 +12,7 @@ import { NFTPreview } from "./NFTPreview";
 import { LoadingSkeleton } from "./LoadingSkeleton";
 import { ErrorMessage } from "./ErrorMessage";
 import { TransactionStatus } from "./TransactionStatus";
+import { MetadataSelector } from "./MetadataSelector";
 import { CONTRACT_ABI, DEFAULT_CONTRACT } from "../constants/contract";
 import {
   Card,
@@ -26,10 +27,13 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 
+const DEFAULT_METADATA_URL = "https://plum-select-octopus-670.mypinata.cloud/ipfs/bafkreifvaqx7lbu6noz6vajqkvn5onix4r46yvxttcw62iqsprr3q2kn24";
+
 export function MintNFT() {
-  const [tokenURI, setTokenURI] = useState("");
+  const [tokenURI, setTokenURI] = useState(DEFAULT_METADATA_URL);
   const [contractAddress, setContractAddress] = useState<string>("");
   const [mounted, setMounted] = useState(false);
+  const [inputMode, setInputMode] = useState<"select" | "manual">("select");
 
   const { address, isConnected } = useAccount();
   const { writeContract, data: hash, error, isPending } = useWriteContract();
@@ -138,23 +142,45 @@ export function MintNFT() {
         </div>
 
         <div className="space-y-3">
-          <Label
-            htmlFor="tokenURI"
-            className="text-primary font-mono uppercase tracking-wider text-xs"
-          >
-            → Metadata Coordinates
-          </Label>
-          <Input
-            id="tokenURI"
-            type="text"
-            value={tokenURI}
-            onChange={(e) => setTokenURI(e.target.value)}
-            placeholder="ipfs://... or https://gateway.pinata.cloud/ipfs/..."
-            className="font-mono text-sm bg-background/50 border-primary/30 focus:border-accent focus:ring-accent/50 transition-all"
-          />
+          <div className="flex items-center justify-between">
+            <Label
+              htmlFor="tokenURI"
+              className="text-primary font-mono uppercase tracking-wider text-xs"
+            >
+              → Metadata Coordinates
+            </Label>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setInputMode(inputMode === "select" ? "manual" : "select");
+                setTokenURI("");
+              }}
+              className="text-xs font-mono border-primary/30 hover:border-accent hover:text-accent transition-all"
+            >
+              {inputMode === "select" ? "Manual Input" : "Select Preset"}
+            </Button>
+          </div>
+
+          {inputMode === "select" ? (
+            <MetadataSelector value={tokenURI} onValueChange={setTokenURI} />
+          ) : (
+            <Input
+              id="tokenURI"
+              type="text"
+              value={tokenURI}
+              onChange={(e) => setTokenURI(e.target.value)}
+              placeholder="ipfs://... or https://gateway.pinata.cloud/ipfs/..."
+              className="font-mono text-sm bg-background/50 border-primary/30 focus:border-accent focus:ring-accent/50 transition-all"
+            />
+          )}
+          
           <p className="text-xs text-muted-foreground/60 font-mono flex items-center gap-2">
             <span className="text-accent">▸</span>
-            Input IPFS hash or metadata URL to initialize deployment
+            {inputMode === "select"
+              ? "Select from predefined metadata or switch to manual input"
+              : "Input IPFS hash or metadata URL to initialize deployment"}
           </p>
         </div>
 
