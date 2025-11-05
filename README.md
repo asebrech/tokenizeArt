@@ -79,12 +79,6 @@ After evaluating multiple blockchain platforms (Ethereum, Binance Smart Chain, P
 - Free test ETH from faucets (no real money required)
 - Identical behavior to mainnet for learning purposes
 
-#### 5. **Interoperability**
-
-- NFTs are widely supported across marketplaces (OpenSea, Rarible, LooksRare)
-- Standard wallet support (MetaMask, WalletConnect, Rainbow)
-- Easy integration with IPFS for decentralized metadata storage
-
 ### Why ERC-721?
 
 The **ERC-721 standard** was chosen over alternatives (ERC-1155, custom implementations) because:
@@ -303,12 +297,7 @@ Example IPFS URI: `ipfs://QmYourHash/metadata.json`
 - [OpenZeppelin Documentation](https://docs.openzeppelin.com/contracts/)
 - [Hardhat Documentation](https://hardhat.org/docs)
 - [IPFS Documentation](https://docs.ipfs.tech/)
-
-### Getting Help
-
-- Review the `documentation/` folder for detailed guides
-- Check [Hardhat troubleshooting](https://hardhat.org/hardhat-runner/docs/troubleshooting)
-- Explore [Wagmi documentation](https://wagmi.sh/) for frontend issues
+- [Wagmi documentation](https://wagmi.sh/)
 
 ---
 
