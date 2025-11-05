@@ -307,51 +307,6 @@ npx hardhat verify --network sepolia 0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C 
 
 ---
 
-## Post-Deployment Steps
-
-### 1. Update Frontend Configuration
-
-Update the contract address in your frontend:
-
-**File**: `mint/app/constants/contract.ts`
-
-```typescript
-export const DEFAULT_CONTRACT = "0xYourNewContractAddress";
-```
-
-### 2. Test Contract Functions
-
-On Etherscan, test the contract:
-
-1. Go to "Read Contract" tab
-2. Try `name()` - Should return "UNSC-42"
-3. Try `symbol()` - Should return "UNSC"
-4. Try `owner()` - Should return your deployer address
-
-### 3. Update Documentation
-
-Update the contract address in:
-
-- `README.md`
-- Frontend UI (if hardcoded)
-- Any documentation files
-
-### 4. Document Deployment Details
-
-Record for evaluation:
-
-```
-Contract: UNSC42
-Address: 0xYourContractAddress
-Network: Sepolia Testnet
-Deployer: 0xYourDeployerAddress
-Block: #BlockNumber
-Transaction: 0xDeploymentTxHash
-Etherscan: https://sepolia.etherscan.io/address/0xYourContractAddress
-```
-
----
-
 ## Troubleshooting
 
 ### Error: "insufficient funds for intrinsic transaction cost"
