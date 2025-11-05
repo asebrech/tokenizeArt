@@ -68,25 +68,45 @@ The app comes with a default contract address, but you can change it:
 
 **Default Contract**: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`
 
-### Step 4: Enter Metadata URI
+### Step 4: Select or Enter Metadata URI
 
-In the **"Token URI"** field, enter your IPFS metadata URI:
+The application provides two ways to input metadata:
 
-**Format**: `ipfs://QmYourHashHere/metadata.json`
+#### Option A: Select from Predefined NFTs (Default)
 
-**Example**: `ipfs://QmVWYAenTfN9pUjJjgNjNbUdUw6fVDxp8qZqL5x6wkUzqK/1.json`
+1. By default, the first predefined NFT is selected
+2. Click the dropdown to see all available predefined NFTs
+3. Each option shows:
+   - **#1, #2, #3** - NFT number
+   - **Actual NFT name** - fetched from metadata (e.g., "UNSC-42 #1 - Space Marine")
+4. Select any NFT to automatically populate the metadata URI
+
+**Available Predefined NFTs**:
+
+- #1 - First artwork (selected by default)
+- #2 - Second artwork
+- #3 - Third artwork
+
+#### Option B: Manual Input
+
+1. Click the **"Manual Input"** button (top-right of the metadata field)
+2. Enter your custom IPFS metadata URI manually
+
+**Format**: `ipfs://QmYourHashHere/metadata.json` or full gateway URL
+
+**Example**: `https://gateway.pinata.cloud/ipfs/QmHash/metadata.json`
 
 **Important**:
 
-- Must start with `ipfs://`
 - Must point to valid JSON metadata
 - Metadata should follow ERC-721 standard (see [Preparing NFT Metadata](#preparing-nft-metadata))
+- Click **"Select Preset"** button to switch back to predefined options
 
 ### Step 5: Preview Metadata
 
-As you type the URI, the application will:
+As you select or enter the URI, the application will:
 
-1. Fetch metadata from IPFS
+1. Automatically fetch metadata from IPFS
 2. Display a preview card showing:
    - NFT image
    - Name
@@ -96,6 +116,7 @@ As you type the URI, the application will:
 **Loading States**:
 
 - ⏳ "Fetching metadata..." - Loading
+- 🔄 "Loading..." - Fetching NFT names in dropdown
 - ✅ Preview card displayed - Valid metadata
 - ❌ Error message - Invalid URI or metadata
 

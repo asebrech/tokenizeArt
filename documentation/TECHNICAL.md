@@ -344,6 +344,7 @@ mint/
 ├── app/
 │   ├── components/
 │   │   ├── MintNFT.tsx          # Main minting interface
+│   │   ├── MetadataSelector.tsx
 │   │   ├── NFTPreview.tsx       # Metadata preview card
 │   │   ├── TransactionStatus.tsx # TX status display
 │   │   ├── LoadingSkeleton.tsx  # Loading states
@@ -377,7 +378,9 @@ mint/
 
 - Contract address input with localStorage persistence
 - Recipient address input
-- Token URI input
+- **Dual metadata input modes**:
+  - **Select mode**: Dropdown with predefined NFT metadata URLs
+  - **Manual mode**: Direct URI input for custom metadata
 - Real-time metadata preview
 - Transaction status tracking
 - Error handling
@@ -385,8 +388,9 @@ mint/
 **State Management**:
 
 ```typescript
-const [tokenURI, setTokenURI] = useState("");
+const [tokenURI, setTokenURI] = useState(DEFAULT_METADATA_URL);
 const [contractAddress, setContractAddress] = useState("");
+const [inputMode, setInputMode] = useState<"select" | "manual">("select");
 
 // Wagmi hooks
 const { address, isConnected } = useAccount();
