@@ -412,20 +412,6 @@ networks: {
 }
 ```
 
-### Verification Fails
-
-**Manual verification command**:
-
-```bash
-npx hardhat verify --network sepolia CONTRACT_ADDRESS "DEPLOYER_ADDRESS"
-```
-
-**If still failing**:
-
-- Wait a few minutes (Etherscan may be delayed)
-- Check your Etherscan API key is valid
-- Verify you're using the correct constructor arguments
-
 ### Gas Estimation Failed
 
 **Cause**: RPC issues or network congestion
