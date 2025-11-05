@@ -12,6 +12,11 @@
 
 A monorepo containing smart contracts and a Next.js frontend for minting NFTs with a Space/Halo themed UI.
 
+<div align="center">
+  <img src="https://plum-select-octopus-670.mypinata.cloud/ipfs/bafybeif3isiawv2ufgaz2ppiz2l5c5bpxkkifrjijr2c3pvdvbulym4wpq" alt="UNSC-42 NFT" width="400"/>
+  <p><em>Example UNSC-42 NFT</em></p>
+</div>
+
 ---
 
 ## 📋 Table of Contents
