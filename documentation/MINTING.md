@@ -66,7 +66,7 @@ The app comes with a default contract address, but you can change it:
 2. Enter your deployed contract address
 3. The address is automatically saved to browser localStorage
 
-**Default Contract**: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`
+**Default Contract**: `0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99`
 
 ### Step 4: Select or Enter Metadata URI
 

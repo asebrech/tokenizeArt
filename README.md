@@ -8,7 +8,7 @@
 >
 > _Network: Sepolia Testnet_
 >
-> _Contract Address: [`0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`](https://sepolia.etherscan.io/address/0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C)_
+> _Contract Address: [`0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99`](https://sepolia.etherscan.io/address/0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99)_
 
 A monorepo containing smart contracts and a Next.js frontend for minting NFTs with a Space/Halo themed UI.
 
@@ -292,7 +292,7 @@ Example IPFS URI: `ipfs://QmYourHash/metadata.json`
 
 ### External Links
 
-- [View Contract on Etherscan](https://sepolia.etherscan.io/address/0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C)
+- [View Contract on Etherscan](https://sepolia.etherscan.io/address/0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99)
 - [ERC-721 Standard](https://eips.ethereum.org/EIPS/eip-721)
 - [OpenZeppelin Documentation](https://docs.openzeppelin.com/contracts/)
 - [Hardhat Documentation](https://hardhat.org/docs)

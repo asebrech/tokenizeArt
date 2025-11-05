@@ -262,7 +262,7 @@ You'll need it for:
 - Interacting with the contract
 - Documentation
 
-Example: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`
+Example: `0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99`
 
 ---
 
@@ -302,7 +302,7 @@ npx hardhat verify --network sepolia YOUR_CONTRACT_ADDRESS "YOUR_DEPLOYER_ADDRES
 Example:
 
 ```bash
-npx hardhat verify --network sepolia 0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C "0xYourDeployerAddress"
+npx hardhat verify --network sepolia 0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99 "0xYourDeployerAddress"
 ```
 
 ---

@@ -1,6 +1,6 @@
 import { parseAbi } from "viem";
 
-export const DEFAULT_CONTRACT = "0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C";
+export const DEFAULT_CONTRACT = "0xEd93110b4b0D1dC2DBDd66182FDa9aB738d28f99";
 
 export const CONTRACT_ABI = parseAbi([
   "function mintNFT(address recipient, string memory tokenURI) public returns (uint256)",
