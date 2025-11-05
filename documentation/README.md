@@ -1,4 +1,4 @@
-# � Documentation Index
+# 📚 Documentation Index
 
 Complete documentation for the UNSC-42 TokenizeArt NFT project.
 
@@ -6,7 +6,7 @@ Complete documentation for the UNSC-42 TokenizeArt NFT project.
 
 ## 📖 Available Guides
 
-### �🚀 [Quick Start Guide](./README.md)
+### 🚀 [Quick Start Guide](./README.md)
 
 **You are here!** Get your project running in 5 minutes with step-by-step instructions.
 
