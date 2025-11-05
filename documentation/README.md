@@ -337,30 +337,6 @@ Now that you have a working NFT project:
 - [TECHNICAL.md](./TECHNICAL.md) - Technical specifications
 - [SECURITY.md](./SECURITY.md) - Security best practices
 
-### 🎨 Customize Your Project
-
-- Update color theme in `mint/app/globals.css`
-- Modify contract name/symbol in `code/UNSC42.sol`
-- Add new features to frontend
-
-### 🧪 Test Features
-
-- Mint multiple NFTs
-- Transfer NFTs between wallets
-- View on OpenSea Testnet
-- Test error scenarios
-
-### 📝 For Evaluation
-
-Prepare to demonstrate:
-
-- Contract deployment process
-- Minting functionality
-- Ownership verification with `ownerOf()`
-- Code review of smart contract
-- Security considerations
-- Metadata standards compliance
-
 ---
 
 ## Project Structure Overview
