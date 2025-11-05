@@ -10,8 +10,6 @@ Detailed technical documentation for the UNSC-42 NFT smart contract and supporti
 2. [Contract Functions](#contract-functions)
 3. [Frontend Architecture](#frontend-architecture)
 4. [Web3 Integration](#web3-integration)
-5. [Testing](#testing)
-6. [Gas Optimization](#gas-optimization)
 
 ---
 
