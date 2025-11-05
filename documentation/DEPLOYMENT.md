@@ -261,7 +261,6 @@ You'll need it for:
 - Frontend configuration
 - Interacting with the contract
 - Documentation
-- Evaluation demonstration
 
 Example: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`
 
