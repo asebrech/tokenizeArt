@@ -3,12 +3,12 @@
 **A comprehensive NFT minting platform built on Ethereum blockchain**
 
 > _Project by: asebrech (42 School)_
-> 
+>
 > _Contract: UNSC-42 (ERC-721 Standard)_
-> 
+>
 > _Network: Sepolia Testnet_
-> 
-> _Contract Address: `0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`_
+>
+> _Contract Address: [`0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C`](https://sepolia.etherscan.io/address/0x318784B9CFa2Ed6Cf91e54915933A55bf1EFC65C)_
 
 A monorepo containing smart contracts and a Next.js frontend for minting NFTs with a Space/Halo themed UI.
 
